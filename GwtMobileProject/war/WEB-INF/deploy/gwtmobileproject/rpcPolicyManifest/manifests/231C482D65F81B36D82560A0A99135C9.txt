@@ -1,0 +1,2 @@
+serviceClass: com.kereki.gwtmobile.client.DiaryService
+path: AB69DCB743D1E11EAC3074B2D47FF1C4.gwt.rpc
