@@ -1,2 +1,3 @@
 # Module gwtmobileproject
 # RPC service class, partial path of RPC policy file
+com.kereki.gwtmobile.client.DiaryService, AB69DCB743D1E11EAC3074B2D47FF1C4.gwt.rpc
