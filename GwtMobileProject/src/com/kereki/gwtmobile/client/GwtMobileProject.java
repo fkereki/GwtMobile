@@ -1,35 +1,37 @@
 package com.kereki.gwtmobile.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.kereki.gwtmobile.shared.ListOfEntries;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.History;
+import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
 
-public class GwtMobileProject implements EntryPoint {
+public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> {
+
+  Environment environment;
+
 
   @Override
   public void onModuleLoad() {
+    History.addValueChangeHandler(this);
+    environment= new Environment(new Model());
+    environment.launch(AllEntriesPresenter.PLACE);
+
     // Date currd= new Date();
     // Window.alert(DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss").format(currd));
 
-    Model model= new Model();
-
-    model.getListOfEntries(new AsyncCallback<ListOfEntries>() {
-
-      @Override
-      public void onFailure(Throwable caught) {
-        Window.alert("FAILURE!!");
-      }
-
-      @Override
-      public void onSuccess(ListOfEntries result) {
-        String ss= "";
-        for (int i= 0; i < result.size(); i++) {
-          ss+= result.get(i).date + "-" + result.get(i).title + "\n";
-        }
-        Window.alert(ss);
-      }
-    });
+    // Model model= new Model();
+    //
+    // model.getListOfEntries(new SimpleCallback<ListOfEntries>() {
+    // @Override
+    // public void goBack(ListOfEntries result) {
+    // String ss= "";
+    // for (int i= 0; i < result.size(); i++) {
+    // ss+= result.get(i).date + "-" + result.get(i).title + "\n";
+    // }
+    // Window.alert(ss);
+    // }
+    // });
 
     // diaryService.putEntry(new DiaryEntry(new Date(), "a title", "some text",
     // 8),
@@ -59,5 +61,10 @@ public class GwtMobileProject implements EntryPoint {
     // }
     // }
 
+  }
+
+  @Override
+  public void onValueChange(ValueChangeEvent<String> event) {
+    environment.launch(event.getValue());
   }
 }
