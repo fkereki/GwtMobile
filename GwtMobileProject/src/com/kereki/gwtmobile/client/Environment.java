@@ -7,6 +7,8 @@ import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesView;
+import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryView;
 
 public class Environment {
   final Model model;
@@ -46,6 +48,10 @@ public class Environment {
         .add(
           new AllEntriesPresenter(args, new AllEntriesView(), this).getDisplay()
             .asWidget());
+    } else if (token.equals(SingleEntryPresenter.PLACE)) {
+      RootPanel.get().add(
+        new SingleEntryPresenter(args, new SingleEntryView(), this).getDisplay()
+          .asWidget());
     } else {
       showAlert("Unrecognized token=" + token);
     }
