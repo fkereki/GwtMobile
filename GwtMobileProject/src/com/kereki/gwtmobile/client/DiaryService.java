@@ -8,9 +8,9 @@ import com.kereki.gwtmobile.shared.ListOfEntries;
 /**
  * The client side stub for the RPC service.
  */
-@RemoteServiceRelativePath("greet")
+@RemoteServiceRelativePath("diary")
 public interface DiaryService extends RemoteService {
-  ListOfEntries GetAllEntries();
+  ListOfEntries getAllEntries();
 
-  void PutEntry(DiaryEntry myEntry) throws IllegalArgumentException;
+  void putEntry(DiaryEntry myEntry) throws RuntimeException;
 }

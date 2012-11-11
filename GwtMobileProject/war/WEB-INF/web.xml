@@ -7,13 +7,13 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
+    <servlet-name>diaryServlet</servlet-name>
     <servlet-class>com.kereki.gwtmobile.server.DiaryServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/gwtmobileproject/greet</url-pattern>
+    <servlet-name>diaryServlet</servlet-name>
+    <url-pattern>/gwtmobileproject/diary</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
