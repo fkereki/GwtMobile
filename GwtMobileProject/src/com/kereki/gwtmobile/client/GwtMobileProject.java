@@ -23,8 +23,11 @@ public class GwtMobileProject implements EntryPoint {
 
       @Override
       public void onSuccess(ListOfEntries result) {
-        Window.alert("Got " + result.size() + " and the zeroth says "
-          + result.get(0).title + " at " + result.get(0).date.toString());
+        String ss= "";
+        for (int i= 0; i < result.size(); i++) {
+          ss+= result.get(i).date + "-" + result.get(i).title + "\n";
+        }
+        Window.alert(ss);
       }
     });
 
