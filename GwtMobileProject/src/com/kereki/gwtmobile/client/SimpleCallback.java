@@ -15,4 +15,8 @@ public abstract class SimpleCallback<T> implements AsyncCallback<T> {
   }
 
   public abstract void goBack(T result);
+
+  public void goBack() {
+    goBack(null);
+  }
 }

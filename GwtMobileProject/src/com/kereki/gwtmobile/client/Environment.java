@@ -26,6 +26,9 @@ public class Environment {
   }
 
   public void launch(String token) {
+    Window.alert("launching " + token);
+
+
     /*
      * There could be parameters after the "#token" in the classic form
      * "?key1=value1&key2=value2..."; for more on this, check
@@ -43,15 +46,18 @@ public class Environment {
 
     if (token.isEmpty()) {
       // no need to do anything...
+
     } else if (token.equals(AllEntriesPresenter.PLACE)) {
       RootPanel.get()
         .add(
           new AllEntriesPresenter(args, new AllEntriesView(), this).getDisplay()
             .asWidget());
+
     } else if (token.equals(SingleEntryPresenter.PLACE)) {
       RootPanel.get().add(
         new SingleEntryPresenter(args, new SingleEntryView(), this).getDisplay()
           .asWidget());
+
     } else {
       showAlert("Unrecognized token=" + token);
     }

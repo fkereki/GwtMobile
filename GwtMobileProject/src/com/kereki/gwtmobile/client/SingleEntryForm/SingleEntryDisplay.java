@@ -13,15 +13,15 @@ public interface SingleEntryDisplay extends Display {
 
   int getMood();
 
-  void setEntryDate(String date);
+  void setEntryDate(final String date);
 
-  void setEntryTitle(String title);
+  void setEntryTitle(final String title);
 
-  void setEntryText(String text);
+  void setEntryText(final String text);
 
-  void setMood(int mood);
+  void setMood(final int mood);
 
-  void setSaveCallback(SimpleCallback<Object> callback);
+  void setSaveCallback(final SimpleCallback<Object> callback);
 
-  void setCancelCallback(SimpleCallback<Object> callback);
+  void setCancelCallback(final SimpleCallback<Object> callback);
 }

@@ -26,6 +26,7 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
 
 
   public SingleEntryView() {
+    dateTextbox.setReadOnly(true);
 
     ft.setWidget(0, 0, new Label("Date:"));
     ft.setWidget(1, 0, new Label("Title:"));
@@ -43,32 +44,36 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
     saveButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {
-        onSaveClickCallback.goBack(null);
+        onSaveClickCallback.goBack();
       }
     });
 
     cancelButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {
-        onCancelClickCallback.goBack(null);
+        onCancelClickCallback.goBack();
       }
     });
 
     initWidget(ft);
   }
 
+  @Override
   public String getEntryDate() {
     return dateTextbox.getValue();
   }
 
+  @Override
   public String getEntryTitle() {
     return titleTextbox.getValue();
   }
 
+  @Override
   public String getEntryText() {
     return textTextarea.getValue();
   }
 
+  @Override
   public int getMood() {
     try {
       return Integer.parseInt(moodPicker.getValue());
@@ -77,26 +82,32 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
     }
   }
 
+  @Override
   public void setEntryDate(String date) {
     dateTextbox.setValue(date);
   }
 
+  @Override
   public void setEntryTitle(String title) {
     titleTextbox.setValue(title);
   }
 
+  @Override
   public void setEntryText(String text) {
     textTextarea.setValue(text);
   }
 
+  @Override
   public void setMood(int mood) {
     moodPicker.setValue("" + mood);
   }
 
+  @Override
   public void setSaveCallback(SimpleCallback<Object> callback) {
     onSaveClickCallback= callback;
   }
 
+  @Override
   public void setCancelCallback(SimpleCallback<Object> callback) {
     onCancelClickCallback= callback;
   }
