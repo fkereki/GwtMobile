@@ -14,7 +14,6 @@ public class Environment {
   final Model model;
   final Grid rootDisplay= new Grid(2, 1);
   final MenuBar runMenuBar= new MenuBar();
-  String startingToken;
 
 
   public Environment(Model aModel) {
@@ -26,8 +25,7 @@ public class Environment {
   }
 
   public void launch(String token) {
-    Window.alert("launching " + token);
-
+    History.newItem(token, false);
 
     /*
      * There could be parameters after the "#token" in the classic form
@@ -41,7 +39,6 @@ public class Environment {
       token= token.substring(0, question);
     }
 
-    History.newItem(token);
     RootPanel.get().clear();
 
     if (token.isEmpty()) {
@@ -60,6 +57,7 @@ public class Environment {
 
     } else {
       showAlert("Unrecognized token=" + token);
+      token= "";
     }
   }
 

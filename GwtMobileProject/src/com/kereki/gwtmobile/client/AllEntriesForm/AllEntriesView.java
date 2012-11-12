@@ -55,7 +55,11 @@ public class AllEntriesView extends com.kereki.gwtmobile.client.View implements
 
   @Override
   public String getSelectedDate() {
-    return list.getValue(list.getSelectedIndex());
+    if (list.getSelectedIndex() == -1) {
+      return "";
+    } else {
+      return list.getValue(list.getSelectedIndex());
+    }
   }
 
   @Override

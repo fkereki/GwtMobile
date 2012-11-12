@@ -4,6 +4,7 @@ import com.kereki.gwtmobile.client.Environment;
 import com.kereki.gwtmobile.client.Presenter;
 import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.shared.ListOfEntries;
 
 public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
 
@@ -17,16 +18,17 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
 
     super(params, allEntriesDisplay, environment);
 
-    allEntriesDisplay.setEntryData(0, "1960-09-22 01:23:45", "titulo de FK",
-      "un gran texto de FK", 22);
-    allEntriesDisplay.setEntryData(1, "1963-11-24 05:06:07", "ines aca",
-      "el texto de inesofa", 33);
-    allEntriesDisplay.setEntryData(2, "1973-12-20 08:18:28", "griselda's",
-      "la griselda canta", 44);
-    allEntriesDisplay.setEntryData(3, "1977-11-19 21:20:19", "dale ale", "alejopo", 11);
+    environment.getModel().getListOfEntries(new SimpleCallback<ListOfEntries>() {
+      @Override
+      public void goBack(ListOfEntries result) {
+        for (int i= 0; i < result.size(); i++) {
+          allEntriesDisplay.setEntryData(i, result.get(i).date, result.get(i).title,
+            result.get(i).text, result.get(i).mood);
+        }
+      }
+    });
 
     allEntriesDisplay.setAddCallback(new SimpleCallback<Object>() {
-
       @Override
       public void goBack(Object result) {
         environment.launch(SingleEntryPresenter.PLACE + "?date=");
@@ -34,11 +36,14 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
     });
 
     allEntriesDisplay.setEditCallback(new SimpleCallback<Object>() {
-
       @Override
       public void goBack(Object result) {
-        environment.launch(SingleEntryPresenter.PLACE + "?date="
-          + allEntriesDisplay.getSelectedDate());
+        if (allEntriesDisplay.getSelectedDate().isEmpty()) {
+          environment.launch(SingleEntryPresenter.PLACE + "?date=");
+        } else {
+          environment.launch(SingleEntryPresenter.PLACE + "?date="
+            + allEntriesDisplay.getSelectedDate());
+        }
       }
     });
   }

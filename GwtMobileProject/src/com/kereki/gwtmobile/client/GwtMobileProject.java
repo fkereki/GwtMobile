@@ -4,6 +4,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
 
 public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> {
@@ -16,9 +17,6 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
     History.addValueChangeHandler(this);
     environment= new Environment(new Model());
     environment.launch(AllEntriesPresenter.PLACE);
-
-    // Date currd= new Date();
-    // Window.alert(DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss").format(currd));
 
     // Model model= new Model();
     //
@@ -65,6 +63,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
 
   @Override
   public void onValueChange(ValueChangeEvent<String> event) {
+    Window.alert("onvaluechange " + event.getValue());
     environment.launch(event.getValue());
   }
 }
