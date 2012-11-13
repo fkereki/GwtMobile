@@ -15,6 +15,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
     History.addValueChangeHandler(this);
     environment= new Environment(new Model());
     environment.launch(AllEntriesPresenter.PLACE);
+    environment.model.putPendingEntries();
   }
 
   @Override

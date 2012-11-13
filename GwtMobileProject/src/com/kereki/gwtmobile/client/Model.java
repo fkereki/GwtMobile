@@ -12,6 +12,9 @@ public class Model {
   private Storage localStorage= null;
   private StorageMap cache= null;
   private final ListOfEntries myList= new ListOfEntries();
+  private final String SEPARATOR= "~~~";
+  private final String PREFIX= "entry.";
+  private final String PREFIX_PENDING= "to.add.";
 
 
   public Model() {
@@ -31,8 +34,6 @@ public class Model {
   }
 
   public void getListOfEntries(final AsyncCallback<ListOfEntries> callback) {
-    final String SEPARATOR= "~~~";
-    final String PREFIX= "entry.";
 
     diaryService.getAllEntries(new AsyncCallback<ListOfEntries>() {
 
@@ -50,7 +51,8 @@ public class Model {
             if (((String) cacheKey).startsWith(PREFIX)) {
               String date= ((String) cacheKey).substring(PREFIX.length());
               String[] parts= cache.get(cacheKey).split(SEPARATOR);
-              myList.add(new DiaryEntry(date, parts[0], parts[1], 22));
+              myList.add(new DiaryEntry(date, parts[0], parts[1], Integer
+                .parseInt(parts[2])));
             }
           }
         }
@@ -69,7 +71,7 @@ public class Model {
 
         if (localStorage != null) {
           for (int i= 0; i < result.size(); i++) {
-            cache.put("entry." + result.get(i).date, result.get(i).title + SEPARATOR
+            cache.put(PREFIX + result.get(i).date, result.get(i).title + SEPARATOR
               + result.get(i).text + SEPARATOR + result.get(i).mood);
 
             myList.add(new DiaryEntry(result.get(i).date, result.get(i).title, result
@@ -82,19 +84,55 @@ public class Model {
     });
   }
 
+
+
   public void putEntry(final DiaryEntry myEntry, final AsyncCallback<Void> callback) {
     diaryService.putEntry(myEntry, new AsyncCallback<Void>() {
 
       @Override
       public void onFailure(Throwable caught) {
-        // on DB failure, add it to local cache for later re-processing
+        /**
+         * On failure, add the entry to the cache and mark it as pending
+         */
+        if (localStorage != null) {
+          cache.put(PREFIX + myEntry.date, myEntry.title + SEPARATOR + myEntry.text
+            + SEPARATOR + myEntry.mood);
+          cache.put(PREFIX_PENDING + myEntry.date, myEntry.date);
+        }
         callback.onSuccess(null);
       }
 
       @Override
       public void onSuccess(Void result) {
+        /**
+         * On success, just return
+         */
         callback.onSuccess(null);
       }
     });
+  }
+
+
+
+  public void putPendingEntries() {
+    if (localStorage != null) {
+      Object[] cacheKeys= cache.keySet().toArray();
+      for (Object cacheKey : cacheKeys) {
+        if (((String) cacheKey).startsWith(PREFIX_PENDING)) {
+          String date= cache.get(cacheKey);
+          String[] parts= cache.get(PREFIX + date).split(SEPARATOR);
+          DiaryEntry entry= new DiaryEntry(date, parts[0], parts[1],
+            Integer.parseInt(parts[2]));
+          cache.remove(cacheKey); // remove it; if the PUT fails, it will be
+                                  // added again
+          putEntry(entry, new SimpleCallback<Void>() {
+            @Override
+            public void goBack(Void result) {
+              // nothing to do; putEntry(...) took care of everything
+            }
+          });
+        }
+      }
+    }
   }
 }

@@ -5,7 +5,6 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
   <servlet>
     <servlet-name>diaryServlet</servlet-name>
     <servlet-class>com.kereki.gwtmobile.server.DiaryServiceImpl</servlet-class>
@@ -20,5 +19,4 @@
   <welcome-file-list>
     <welcome-file>GwtMobileProject.html</welcome-file>
   </welcome-file-list>
-
 </web-app>

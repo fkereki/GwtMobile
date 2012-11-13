@@ -22,22 +22,19 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
 
     super(params, singleEntryDisplay, environment);
 
-    String dateToEdit= null;
+    String dateToEdit= "";
     if (!params.isEmpty()) {
-      KeyValueMap args= new KeyValueMap(params);
-      dateToEdit= args.get("date");
-    } else {
-      dateToEdit= "";
+      dateToEdit= (new KeyValueMap(params)).get("date");
     }
 
     if ((dateToEdit != null) & !dateToEdit.isEmpty()) {
-      DiaryEntry toEdit= environment.getModel().getSingleEntry(dateToEdit);
+      final DiaryEntry toEdit= environment.getModel().getSingleEntry(dateToEdit);
       singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
       singleEntryDisplay.setEntryTitle(toEdit.title);
       singleEntryDisplay.setEntryText(toEdit.text);
       singleEntryDisplay.setMood(toEdit.mood);
-    } else {
 
+    } else {
       dateToEdit= DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
       singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
       singleEntryDisplay.setEntryTitle("");
