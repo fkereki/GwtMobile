@@ -4,6 +4,9 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -21,7 +24,12 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
   SingleEntryDisplay {
 
   private final FlexTable ft= new FlexTable();
-  private final HorizontalPanel hp= new HorizontalPanel();
+  private final Label dateLabel= new Label("Date:");
+  private final Label titleLabel= new Label("Title:");
+  private final Label textLabel= new Label("Text:");
+  private final Label moodLabel= new Label("Mood:");
+  private final HorizontalPanel hp1= new HorizontalPanel();
+  private final HorizontalPanel hp2= new HorizontalPanel();
   private final TextBox dateTextbox= new TextBox();
   private final TextBox titleTextbox= new TextBox();
   private final TextArea textTextarea= new TextArea();
@@ -34,9 +42,18 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
   SimpleCallback<Object> onCancelClickCallback;
 
 
-
   public SingleEntryView() {
     dateTextbox.setReadOnly(true);
+
+    dateTextbox.setWidth("100%");
+    titleTextbox.setWidth("100%");
+    textTextarea.setWidth("100%");
+
+    hp1.setWidth("100%");
+    hp1.add(moodPicker);
+    hp1.add(moodIcon);
+
+    hp2.setWidth("100%");
 
     moodPicker.addItem("Annoyed");
     moodPicker.addItem("Blink");
@@ -59,32 +76,7 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
     moodPicker.addItem("Wheeee");
     moodPicker.addItem("XP");
 
-    ft.setWidget(6, 1, moodPicker);
-
-    ft.setWidget(0, 0, new Label("Date:"));
-    ft.setWidget(1, 0, new Label("Title:"));
-    ft.setWidget(2, 0, new Label("Text:"));
-    ft.setWidget(3, 0, new Label("Mood:"));
-
-    ft.getFlexCellFormatter().setAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT,
-      HasVerticalAlignment.ALIGN_TOP);
-    ft.getFlexCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_LEFT,
-      HasVerticalAlignment.ALIGN_TOP);
-    ft.getFlexCellFormatter().setAlignment(2, 0, HasHorizontalAlignment.ALIGN_LEFT,
-      HasVerticalAlignment.ALIGN_TOP);
-    ft.getFlexCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_LEFT,
-      HasVerticalAlignment.ALIGN_TOP);
-
-    ft.setWidget(0, 1, dateTextbox);
-    ft.setWidget(1, 1, titleTextbox);
-    ft.setWidget(2, 1, textTextarea);
-    ft.setWidget(3, 1, hp);
-    hp.add(moodPicker);
-    hp.add(moodIcon);
-
-    ft.setWidget(4, 1, saveButton);
-    ft.setWidget(5, 1, cancelButton);
-
+    saveButton.setWidth("100%");
     saveButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {
@@ -92,6 +84,7 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
       }
     });
 
+    cancelButton.setWidth("100%");
     cancelButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {
@@ -106,6 +99,16 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
       }
     });
 
+    Window.addResizeHandler(new ResizeHandler() {
+      @Override
+      public void onResize(ResizeEvent event) {
+        redraw();
+      }
+    });
+
+    ft.setWidth("100%");
+    ft.setHeight("100%");
+    redraw();
     initWidget(ft);
   }
 
@@ -162,5 +165,54 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
 
   private void setMoodIcon(int mood) {
     moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
+  }
+
+  @Override
+  public void redraw() {
+    if (Window.getClientHeight() > Window.getClientWidth()) { // portrait
+      ft.clear();
+
+      ft.setWidget(0, 0, dateLabel);
+      ft.setWidget(1, 0, dateTextbox);
+      ft.setWidget(2, 0, titleLabel);
+      ft.setWidget(3, 0, titleTextbox);
+      ft.setWidget(4, 0, textLabel);
+      ft.setWidget(5, 0, textTextarea);
+      ft.setWidget(6, 0, moodLabel);
+      ft.setWidget(7, 0, hp1);
+      ft.setWidget(8, 0, saveButton);
+      ft.setWidget(9, 0, cancelButton);
+
+      ft.getFlexCellFormatter().setAlignment(8, 0, HasHorizontalAlignment.ALIGN_RIGHT,
+        HasVerticalAlignment.ALIGN_TOP);
+      ft.getFlexCellFormatter().setAlignment(9, 0, HasHorizontalAlignment.ALIGN_RIGHT,
+        HasVerticalAlignment.ALIGN_TOP);
+
+    } else { // landscape
+      ft.clear();
+
+      hp2.clear();
+      hp2.add(saveButton);
+      hp2.add(cancelButton);
+
+      ft.setWidget(0, 0, dateLabel);
+      ft.setWidget(0, 1, dateTextbox);
+      ft.setWidget(1, 0, titleLabel);
+      ft.setWidget(1, 1, titleTextbox);
+      ft.setWidget(2, 0, textLabel);
+      ft.setWidget(2, 1, textTextarea);
+      ft.setWidget(3, 0, moodLabel);
+      ft.setWidget(3, 1, hp1);
+      ft.setWidget(4, 1, hp2);
+
+      ft.getFlexCellFormatter().setAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT,
+        HasVerticalAlignment.ALIGN_TOP);
+      ft.getFlexCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_LEFT,
+        HasVerticalAlignment.ALIGN_TOP);
+      ft.getFlexCellFormatter().setAlignment(2, 0, HasHorizontalAlignment.ALIGN_LEFT,
+        HasVerticalAlignment.ALIGN_TOP);
+      ft.getFlexCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_LEFT,
+        HasVerticalAlignment.ALIGN_TOP);
+    }
   }
 }

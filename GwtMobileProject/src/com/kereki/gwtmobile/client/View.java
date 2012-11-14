@@ -9,4 +9,9 @@ public abstract class View extends Composite {
   public final Widget asWidget() {
     return this;
   }
+
+  abstract public void redraw();
+  /**
+   * Redraw/reposition objects after a window resize
+   */
 }

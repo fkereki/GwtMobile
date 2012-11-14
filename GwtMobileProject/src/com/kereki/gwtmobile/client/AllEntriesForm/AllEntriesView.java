@@ -2,6 +2,9 @@ package com.kereki.gwtmobile.client.AllEntriesForm;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -24,12 +27,10 @@ public class AllEntriesView extends com.kereki.gwtmobile.client.View implements
 
   public AllEntriesView() {
     list.setVisibleItemCount(15);
-
-    hp.add(addButton);
-    hp.add(editButton);
-
-    ft.setWidget(0, 0, list);
-    ft.setWidget(1, 0, hp);
+    list.setWidth("100%");
+    hp.setWidth("100%");
+    addButton.setWidth("100%");
+    editButton.setWidth("100%");
 
     addButton.addClickHandler(new ClickHandler() {
       @Override
@@ -45,6 +46,16 @@ public class AllEntriesView extends com.kereki.gwtmobile.client.View implements
       }
     });
 
+    Window.addResizeHandler(new ResizeHandler() {
+      @Override
+      public void onResize(ResizeEvent event) {
+        redraw();
+      }
+    });
+
+    ft.setWidth("100%");
+    ft.setHeight("100%");
+    redraw();
     initWidget(ft);
   }
 
@@ -70,5 +81,26 @@ public class AllEntriesView extends com.kereki.gwtmobile.client.View implements
   @Override
   public void setEditCallback(SimpleCallback<Object> callback) {
     onEditClickCallback= callback;
+  }
+
+  @Override
+  public void redraw() {
+    if (Window.getClientHeight() > Window.getClientWidth()) { // portrait
+      hp.clear();
+      ft.clear();
+
+      ft.setWidget(0, 0, list);
+      ft.setWidget(1, 0, addButton);
+      ft.setWidget(2, 0, editButton);
+
+    } else { // landscape
+      hp.clear();
+      hp.add(addButton);
+      hp.add(editButton);
+
+      ft.clear();
+      ft.setWidget(0, 0, list);
+      ft.setWidget(1, 0, hp);
+    }
   }
 }
