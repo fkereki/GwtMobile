@@ -50,11 +50,9 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
     textTextarea.setWidth("100%");
 
     hp1.setWidth("100%");
-    hp1.add(moodPicker);
-    hp1.add(moodIcon);
-
     hp2.setWidth("100%");
 
+    moodPicker.setWidth("100%");
     moodPicker.addItem("Annoyed");
     moodPicker.addItem("Blink");
     moodPicker.addItem("Creative");
@@ -171,6 +169,7 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
   public void redraw() {
     if (Window.getClientHeight() > Window.getClientWidth()) { // portrait
       ft.clear();
+      hp1.clear();
 
       ft.setWidget(0, 0, dateLabel);
       ft.setWidget(1, 0, dateTextbox);
@@ -179,7 +178,7 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
       ft.setWidget(4, 0, textLabel);
       ft.setWidget(5, 0, textTextarea);
       ft.setWidget(6, 0, moodLabel);
-      ft.setWidget(7, 0, hp1);
+      ft.setWidget(7, 0, moodPicker);
       ft.setWidget(8, 0, saveButton);
       ft.setWidget(9, 0, cancelButton);
 
@@ -190,6 +189,9 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
 
     } else { // landscape
       ft.clear();
+      hp1.clear();
+      hp1.add(moodPicker);
+      hp1.add(moodIcon);
 
       hp2.clear();
       hp2.add(saveButton);
