@@ -18,13 +18,13 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.kereki.gwtmobile.client.SimpleCallback;
+import com.kereki.gwtmobile.client.View;
 
 
-public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
-  SingleEntryDisplay {
+public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
 
   private final FlexTable ft= new FlexTable();
-  private final Label dateLabel= new Label("Date:");
+  private final Label dateLabel= new Label("MOBILE Date:");
   private final Label titleLabel= new Label("Title:");
   private final Label textLabel= new Label("Text:");
   private final Label moodLabel= new Label("Mood:");
@@ -42,7 +42,7 @@ public class SingleEntryView extends com.kereki.gwtmobile.client.View implements
   SimpleCallback<Object> onCancelClickCallback;
 
 
-  public SingleEntryView() {
+  public SingleEntryViewMobile() {
     dateTextbox.setReadOnly(true);
 
     dateTextbox.setWidth("100%");

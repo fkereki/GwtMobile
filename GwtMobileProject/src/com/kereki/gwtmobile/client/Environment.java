@@ -7,8 +7,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesView;
+import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryDisplay;
 import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
-import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryView;
+import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryViewDesktop;
 
 public class Environment {
   final Environment self= this;
@@ -77,8 +78,9 @@ public class Environment {
         @Override
         public void onSuccess() {
           if (self.singleEntryPresenter == null) {
+            View sev= GWT.create(SingleEntryViewDesktop.class);
             self.singleEntryPresenter= new SingleEntryPresenter(args2,
-              new SingleEntryView(), self);
+              (SingleEntryDisplay) sev, self);
           }
           RootPanel.get().clear();
           RootPanel.get().add(self.singleEntryPresenter.getDisplay().asWidget());
