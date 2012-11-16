@@ -6,12 +6,11 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
-import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesView;
-import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryDisplay;
 import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
 
 public class Environment {
   final Environment self= this;
+  final ViewFactory viewFactory;
   final Model model;
 
   /*
@@ -21,8 +20,9 @@ public class Environment {
   SingleEntryPresenter singleEntryPresenter= null;
 
 
-  public Environment(Model aModel) {
+  public Environment(Model aModel, ViewFactory aViewFactory) {
     model= aModel;
+    viewFactory= aViewFactory;
   }
 
   public Model getModel() {
@@ -58,8 +58,8 @@ public class Environment {
         @Override
         public void onSuccess() {
           if (self.allEntriesPresenter == null) {
-            self.allEntriesPresenter= new AllEntriesPresenter(args2,
-              new AllEntriesView(), self);
+            self.allEntriesPresenter= new AllEntriesPresenter(args2, viewFactory
+              .getAllEntriesView(), self);
           }
           RootPanel.get().clear();
           RootPanel.get().add(self.allEntriesPresenter.getDisplay().asWidget());
@@ -77,8 +77,8 @@ public class Environment {
         @Override
         public void onSuccess() {
           if (self.singleEntryPresenter == null) {
-            SingleEntryDisplay sev= GWT.create(SingleEntryDisplay.class);
-            self.singleEntryPresenter= new SingleEntryPresenter(args2, sev, self);
+            self.singleEntryPresenter= new SingleEntryPresenter(args2, viewFactory
+              .getSingleEntryView(), self);
           }
           RootPanel.get().clear();
           RootPanel.get().add(self.singleEntryPresenter.getDisplay().asWidget());
