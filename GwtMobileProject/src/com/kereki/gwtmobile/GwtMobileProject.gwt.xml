@@ -66,13 +66,18 @@
             </none>
     </set-property>
     
+    <replace-with class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryViewDesktop" >
+        <when-type-is class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryDisplay" />
+        <when-property-is name="formfactor" value="desktop" />
+    </replace-with>
+
     <replace-with class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryViewMobile" >
-        <when-type-is class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryViewDesktop" />
+        <when-type-is class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryDisplay" />
         <when-property-is name="formfactor" value="mobile" />
     </replace-with>
 
     <replace-with class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryViewTablet" >
-        <when-type-is class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryViewDesktop" />
+        <when-type-is class="com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryDisplay" />
         <when-property-is name="formfactor" value="tablet" />
     </replace-with>
 

@@ -27,7 +27,7 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
       dateToEdit= (new KeyValueMap(params)).get("date");
     }
 
-    if ((dateToEdit != null) & !dateToEdit.isEmpty()) {
+    if ((dateToEdit != null) && !dateToEdit.isEmpty()) {
       final DiaryEntry toEdit= environment.getModel().getSingleEntry(dateToEdit);
       singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
       singleEntryDisplay.setEntryTitle(toEdit.title);
