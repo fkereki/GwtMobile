@@ -5,7 +5,10 @@ body {
 @if formfactor mobile {
 	body {
 		background-color: LightPink;
-		font-size: 20px;
+	}
+
+	* {
+		font-size:16pt !important;
 	}
 }
 
@@ -13,4 +16,9 @@ body {
 	body {
 		background-color: Orchid;
 	}	
+	
+	@external .gwt-Label;
+	.gwt-Label {
+		font-size: 150%;
+	}
 }
