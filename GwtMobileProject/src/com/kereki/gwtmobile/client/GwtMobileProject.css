@@ -1,0 +1,16 @@
+body {
+	background-color: Orange;
+}
+
+@if formfactor mobile {
+	body {
+		background-color: LightPink;
+		font-size: 20px;
+	}
+}
+
+@if formfactor tablet {
+	body {
+		background-color: Orchid;
+	}	
+}

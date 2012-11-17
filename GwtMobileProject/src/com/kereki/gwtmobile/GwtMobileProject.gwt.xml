@@ -4,10 +4,11 @@
     
     <module rename-to="gwtmobileproject" >
 
+    <inherits name="com.google.gwt.resources.Resources" />
     <inherits name="com.google.gwt.user.User" />
     <inherits name="com.google.gwt.user.theme.clean.Clean" />
     <inherits name="com.kereki.gwtmobile.FormFactor" />
-    
+
     <entry-point class="com.kereki.gwtmobile.client.GwtMobileProject" />
 
     <source path="client" />
