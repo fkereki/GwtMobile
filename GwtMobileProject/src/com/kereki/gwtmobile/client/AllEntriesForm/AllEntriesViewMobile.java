@@ -10,10 +10,10 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.kereki.gwtmobile.client.SimpleCallback;
+import com.kereki.gwtmobile.client.View;
 
 
-public class AllEntriesView extends com.kereki.gwtmobile.client.View implements
-  AllEntriesDisplay {
+public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
 
   private final FlexTable ft= new FlexTable();
   private final HorizontalPanel hp= new HorizontalPanel();
@@ -25,7 +25,7 @@ public class AllEntriesView extends com.kereki.gwtmobile.client.View implements
   SimpleCallback<Object> onEditClickCallback;
 
 
-  public AllEntriesView() {
+  public AllEntriesViewMobile() {
     list.setVisibleItemCount(15);
     list.setWidth("100%");
     hp.setWidth("100%");
