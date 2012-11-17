@@ -1,6 +1,8 @@
 package com.kereki.gwtmobile.client;
 
+import java.util.Date;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -134,5 +136,35 @@ public class Model {
         }
       }
     }
+  }
+
+  public
+    void
+    testConnectivity(final int everySeconds, final AsyncCallback<Void> callback) {
+
+    Scheduler.get().scheduleFixedDelay(new Scheduler.RepeatingCommand() {
+      @Override
+      public boolean execute() {
+        final String currentPing= "ping." + (new Date()).getTime();
+        diaryService.ping(currentPing, new AsyncCallback<String>() {
+
+          @Override
+          public void onFailure(Throwable caught) {
+            callback.onFailure(null);
+          }
+
+          @Override
+          public void onSuccess(String result) {
+            if (result.equals("" + currentPing)) {
+              callback.onSuccess(null);
+            } else {
+              callback.onFailure(null);
+            }
+          }
+        });
+
+        return true; // the command will be invoked again
+      }
+    }, everySeconds * 1000);
   }
 }

@@ -88,4 +88,8 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
     conn.close();
   }
 
+  @Override
+  public String ping(String pong) {
+    return pong;
+  }
 }
