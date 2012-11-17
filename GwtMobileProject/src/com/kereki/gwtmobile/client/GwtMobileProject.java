@@ -9,6 +9,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
 
+enum Status {
+  UNTESTED, OFFLINE, ONLINE
+}
+
 public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> {
   Environment environment;
 
@@ -31,23 +35,23 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
      * we'll try to update the server.
      */
     model.testConnectivity(5, new AsyncCallback<Void>() {
-      int wasOnline= 0; // 0=unknown, 1=offline, 2=online
+      Status wasOnline= Status.UNTESTED;
 
 
       @Override
       public void onFailure(Throwable caught) {
-        if (wasOnline != 1) {
+        if (wasOnline != Status.OFFLINE) {
           Window.setTitle("Diary (OFFLINE)");
-          wasOnline= 1;
+          wasOnline= Status.OFFLINE;
         }
       }
 
       @Override
       public void onSuccess(Void result) {
-        if (wasOnline != 2) {
+        if (wasOnline != Status.ONLINE) {
           Window.setTitle("Diary (Online)");
           model.putPendingEntries();
-          wasOnline= 2;
+          wasOnline= Status.ONLINE;
         }
       }
     });
