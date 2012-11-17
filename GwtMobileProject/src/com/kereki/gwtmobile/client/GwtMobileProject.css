@@ -1,5 +1,5 @@
 body {
-	background-color: Orange;
+	background-color: Coral;
 }
 
 @if formfactor mobile {

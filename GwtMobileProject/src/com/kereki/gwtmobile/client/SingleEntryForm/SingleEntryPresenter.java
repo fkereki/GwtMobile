@@ -29,6 +29,7 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
 
     if ((dateToEdit != null) && !dateToEdit.isEmpty()) {
       final DiaryEntry toEdit= environment.getModel().getSingleEntry(dateToEdit);
+      singleEntryDisplay.setViewTitle("Edit Entry");
       singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
       singleEntryDisplay.setEntryTitle(toEdit.title);
       singleEntryDisplay.setEntryText(toEdit.text);
@@ -36,6 +37,7 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
 
     } else {
       dateToEdit= DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+      singleEntryDisplay.setViewTitle("Add Entry");
       singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
       singleEntryDisplay.setEntryTitle("");
       singleEntryDisplay.setEntryText("");

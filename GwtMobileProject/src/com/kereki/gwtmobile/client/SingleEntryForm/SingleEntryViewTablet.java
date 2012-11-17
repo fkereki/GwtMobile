@@ -1,5 +1,6 @@
 package com.kereki.gwtmobile.client.SingleEntryForm;
 
+
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -9,6 +10,7 @@ import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -17,14 +19,17 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.View;
 
 
 public class SingleEntryViewTablet extends View implements SingleEntryDisplay {
 
+  private final HTML title= new HTML();
+  private final VerticalPanel vp= new VerticalPanel();
   private final FlexTable ft= new FlexTable();
-  private final Label dateLabel= new Label("TABLET Date:");
+  private final Label dateLabel= new Label("Date:");
   private final Label titleLabel= new Label("Title:");
   private final Label textLabel= new Label("Text:");
   private final Label moodLabel= new Label("Mood:");
@@ -43,13 +48,44 @@ public class SingleEntryViewTablet extends View implements SingleEntryDisplay {
 
 
   public SingleEntryViewTablet() {
-    dateTextbox.setReadOnly(true);
+    cancelButton.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(ClickEvent event) {
+        onCancelClickCallback.goBack();
+      }
+    });
 
+    moodPicker.addChangeHandler(new ChangeHandler() {
+      @Override
+      public void onChange(ChangeEvent event) {
+        setMoodIcon(getMood());
+      }
+    });
+
+    saveButton.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(ClickEvent event) {
+        onSaveClickCallback.goBack();
+      }
+    });
+
+    Window.addResizeHandler(new ResizeHandler() {
+      @Override
+      public void onResize(ResizeEvent event) {
+        redraw();
+      }
+    });
+
+    cancelButton.setWidth("100%");
+
+    dateTextbox.setReadOnly(true);
     dateTextbox.setWidth("100%");
-    titleTextbox.setWidth("100%");
-    textTextarea.setWidth("100%");
+
+    ft.setWidth("100%");
+    ft.setHeight("100%");
 
     hp1.setWidth("100%");
+
     hp2.setWidth("100%");
 
     moodPicker.setWidth("100%");
@@ -75,39 +111,19 @@ public class SingleEntryViewTablet extends View implements SingleEntryDisplay {
     moodPicker.addItem("XP");
 
     saveButton.setWidth("100%");
-    saveButton.addClickHandler(new ClickHandler() {
-      @Override
-      public void onClick(ClickEvent event) {
-        onSaveClickCallback.goBack();
-      }
-    });
 
-    cancelButton.setWidth("100%");
-    cancelButton.addClickHandler(new ClickHandler() {
-      @Override
-      public void onClick(ClickEvent event) {
-        onCancelClickCallback.goBack();
-      }
-    });
+    textTextarea.setWidth("100%");
 
-    moodPicker.addChangeHandler(new ChangeHandler() {
-      @Override
-      public void onChange(ChangeEvent event) {
-        setMoodIcon(getMood());
-      }
-    });
+    title.setHTML("...");
+    titleTextbox.setWidth("100%");
 
-    Window.addResizeHandler(new ResizeHandler() {
-      @Override
-      public void onResize(ResizeEvent event) {
-        redraw();
-      }
-    });
+    vp.setWidth("100%");
+    vp.setHeight("100%");
+    vp.add(title);
+    vp.add(ft);
 
-    ft.setWidth("100%");
-    ft.setHeight("100%");
     redraw();
-    initWidget(ft);
+    initWidget(vp);
   }
 
   @Override
@@ -116,53 +132,18 @@ public class SingleEntryViewTablet extends View implements SingleEntryDisplay {
   }
 
   @Override
-  public String getEntryTitle() {
-    return titleTextbox.getValue();
-  }
-
-  @Override
   public String getEntryText() {
     return textTextarea.getValue();
   }
 
   @Override
+  public String getEntryTitle() {
+    return titleTextbox.getValue();
+  }
+
+  @Override
   public int getMood() {
     return moodPicker.getSelectedIndex();
-  }
-
-  @Override
-  public void setEntryDate(String date) {
-    dateTextbox.setValue(date);
-  }
-
-  @Override
-  public void setEntryTitle(String title) {
-    titleTextbox.setValue(title);
-  }
-
-  @Override
-  public void setEntryText(String text) {
-    textTextarea.setValue(text);
-  }
-
-  @Override
-  public void setMood(int mood) {
-    moodPicker.setSelectedIndex(mood);
-    setMoodIcon(mood);
-  }
-
-  @Override
-  public void setSaveCallback(SimpleCallback<Object> callback) {
-    onSaveClickCallback= callback;
-  }
-
-  @Override
-  public void setCancelCallback(SimpleCallback<Object> callback) {
-    onCancelClickCallback= callback;
-  }
-
-  private void setMoodIcon(int mood) {
-    moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
   }
 
   @Override
@@ -216,5 +197,45 @@ public class SingleEntryViewTablet extends View implements SingleEntryDisplay {
       ft.getFlexCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_LEFT,
         HasVerticalAlignment.ALIGN_TOP);
     }
+  }
+
+  @Override
+  public void setCancelCallback(SimpleCallback<Object> callback) {
+    onCancelClickCallback= callback;
+  }
+
+  @Override
+  public void setEntryDate(String date) {
+    dateTextbox.setValue(date);
+  }
+
+  @Override
+  public void setEntryText(String text) {
+    textTextarea.setValue(text);
+  }
+
+  @Override
+  public void setEntryTitle(String title) {
+    titleTextbox.setValue(title);
+  }
+
+  @Override
+  public void setMood(int mood) {
+    moodPicker.setSelectedIndex(mood);
+    setMoodIcon(mood);
+  }
+
+  private void setMoodIcon(int mood) {
+    moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
+  }
+
+  @Override
+  public void setSaveCallback(SimpleCallback<Object> callback) {
+    onSaveClickCallback= callback;
+  }
+
+  @Override
+  public void setViewTitle(String viewTitle) {
+    title.setHTML("<H1>" + viewTitle + " (Tablet Version)</H1>");
   }
 }

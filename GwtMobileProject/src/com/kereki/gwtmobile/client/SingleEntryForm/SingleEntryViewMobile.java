@@ -9,6 +9,7 @@ import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -23,6 +24,7 @@ import com.kereki.gwtmobile.client.View;
 
 public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
 
+  private final HTML title= new HTML();
   private final FlexTable ft= new FlexTable();
   private final Label dateLabel= new Label("MOBILE Date:");
   private final Label titleLabel= new Label("Title:");
@@ -116,53 +118,18 @@ public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
   }
 
   @Override
-  public String getEntryTitle() {
-    return titleTextbox.getValue();
-  }
-
-  @Override
   public String getEntryText() {
     return textTextarea.getValue();
   }
 
   @Override
+  public String getEntryTitle() {
+    return titleTextbox.getValue();
+  }
+
+  @Override
   public int getMood() {
     return moodPicker.getSelectedIndex();
-  }
-
-  @Override
-  public void setEntryDate(String date) {
-    dateTextbox.setValue(date);
-  }
-
-  @Override
-  public void setEntryTitle(String title) {
-    titleTextbox.setValue(title);
-  }
-
-  @Override
-  public void setEntryText(String text) {
-    textTextarea.setValue(text);
-  }
-
-  @Override
-  public void setMood(int mood) {
-    moodPicker.setSelectedIndex(mood);
-    setMoodIcon(mood);
-  }
-
-  @Override
-  public void setSaveCallback(SimpleCallback<Object> callback) {
-    onSaveClickCallback= callback;
-  }
-
-  @Override
-  public void setCancelCallback(SimpleCallback<Object> callback) {
-    onCancelClickCallback= callback;
-  }
-
-  private void setMoodIcon(int mood) {
-    moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
   }
 
   @Override
@@ -216,5 +183,45 @@ public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
       ft.getFlexCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_LEFT,
         HasVerticalAlignment.ALIGN_TOP);
     }
+  }
+
+  @Override
+  public void setCancelCallback(SimpleCallback<Object> callback) {
+    onCancelClickCallback= callback;
+  }
+
+  @Override
+  public void setEntryDate(String date) {
+    dateTextbox.setValue(date);
+  }
+
+  @Override
+  public void setEntryText(String text) {
+    textTextarea.setValue(text);
+  }
+
+  @Override
+  public void setEntryTitle(String title) {
+    titleTextbox.setValue(title);
+  }
+
+  @Override
+  public void setMood(int mood) {
+    moodPicker.setSelectedIndex(mood);
+    setMoodIcon(mood);
+  }
+
+  private void setMoodIcon(int mood) {
+    moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
+  }
+
+  @Override
+  public void setSaveCallback(SimpleCallback<Object> callback) {
+    onSaveClickCallback= callback;
+  }
+
+  @Override
+  public void setViewTitle(String viewTitle) {
+    title.setHTML("<H1>" + viewTitle + " (Mobile)</H1>");
   }
 }

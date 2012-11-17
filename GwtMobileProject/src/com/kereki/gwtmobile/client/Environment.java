@@ -13,12 +13,6 @@ public class Environment {
   final ViewFactory viewFactory;
   final Model model;
 
-  /*
-   * The Presenters are created lazily
-   */
-  AllEntriesPresenter allEntriesPresenter= null;
-  SingleEntryPresenter singleEntryPresenter= null;
-
 
   public Environment(Model aModel, ViewFactory aViewFactory) {
     model= aModel;
@@ -57,12 +51,10 @@ public class Environment {
 
         @Override
         public void onSuccess() {
-          if (self.allEntriesPresenter == null) {
-            self.allEntriesPresenter= new AllEntriesPresenter(args2, viewFactory
-              .getAllEntriesView(), self);
-          }
+          final AllEntriesPresenter allEntriesPresenter= new AllEntriesPresenter(args2,
+            viewFactory.getAllEntriesView(), self);
           RootPanel.get().clear();
-          RootPanel.get().add(self.allEntriesPresenter.getDisplay().asWidget());
+          RootPanel.get().add(allEntriesPresenter.getDisplay().asWidget());
         }
       });
 
@@ -76,12 +68,10 @@ public class Environment {
 
         @Override
         public void onSuccess() {
-          if (self.singleEntryPresenter == null) {
-            self.singleEntryPresenter= new SingleEntryPresenter(args2, viewFactory
-              .getSingleEntryView(), self);
-          }
+          final SingleEntryPresenter singleEntryPresenter= new SingleEntryPresenter(
+            args2, viewFactory.getSingleEntryView(), self);
           RootPanel.get().clear();
-          RootPanel.get().add(self.singleEntryPresenter.getDisplay().asWidget());
+          RootPanel.get().add(singleEntryPresenter.getDisplay().asWidget());
         }
       });
 
