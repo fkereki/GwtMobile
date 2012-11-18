@@ -14,7 +14,7 @@ public class Environment {
   final Model model;
 
 
-  public Environment(Model aModel, ViewFactory aViewFactory) {
+  public Environment(final Model aModel, final ViewFactory aViewFactory) {
     model= aModel;
     viewFactory= aViewFactory;
   }
@@ -42,10 +42,11 @@ public class Environment {
     if (token.isEmpty()) {
       // no need to do anything...
 
-    } else if (token.equals(AllEntriesPresenter.PLACE)) {
+    }
+    else if (token.equals(AllEntriesPresenter.PLACE)) {
       GWT.runAsync(new RunAsyncCallback() {
         @Override
-        public void onFailure(Throwable reason) {
+        public void onFailure(final Throwable reason) {
           showAlert("Cannot show the 'all entries' form...");
         }
 
@@ -57,12 +58,11 @@ public class Environment {
           RootPanel.get().add(allEntriesPresenter.getDisplay().asWidget());
         }
       });
-
-
-    } else if (token.equals(SingleEntryPresenter.PLACE)) {
+    }
+    else if (token.equals(SingleEntryPresenter.PLACE)) {
       GWT.runAsync(new RunAsyncCallback() {
         @Override
-        public void onFailure(Throwable reason) {
+        public void onFailure(final Throwable reason) {
           showAlert("Cannot show the 'single entry' form...");
         }
 
@@ -74,14 +74,14 @@ public class Environment {
           RootPanel.get().add(singleEntryPresenter.getDisplay().asWidget());
         }
       });
-
-    } else {
+    }
+    else {
       showAlert("Unrecognized token=" + token);
       token= "";
     }
   }
 
-  public void showAlert(String alertText) {
+  public void showAlert(final String alertText) {
     Window.alert(alertText);
   }
 }

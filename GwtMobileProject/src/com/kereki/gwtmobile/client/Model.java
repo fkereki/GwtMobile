@@ -138,14 +138,13 @@ public class Model {
     }
   }
 
-  public
-    void
-    testConnectivity(final int everySeconds, final AsyncCallback<Void> callback) {
+  public void testConnection(final int everySeconds, final AsyncCallback<Void> callback) {
 
     Scheduler.get().scheduleFixedDelay(new Scheduler.RepeatingCommand() {
       @Override
       public boolean execute() {
-        final String currentPing= "ping." + (new Date()).getTime();
+        final long sendTime= (new Date()).getTime();
+        final String currentPing= "ping." + sendTime;
         diaryService.ping(currentPing, new AsyncCallback<String>() {
 
           @Override
@@ -155,7 +154,12 @@ public class Model {
 
           @Override
           public void onSuccess(String result) {
-            if (result.equals("" + currentPing)) {
+            /*
+             * If the answer comes, but is delayed more than 3 seconds, let's
+             * consider it to be offline.
+             */
+            final long answerTime= (new Date()).getTime();
+            if ((answerTime - sendTime) < 3000) {
               callback.onSuccess(null);
             } else {
               callback.onFailure(null);

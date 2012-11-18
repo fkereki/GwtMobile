@@ -32,21 +32,21 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   public AllEntriesViewDesktop() {
     addButton.addClickHandler(new ClickHandler() {
       @Override
-      public void onClick(ClickEvent event) {
+      public void onClick(final ClickEvent event) {
         onAddClickCallback.goBack();
       }
     });
 
     editButton.addClickHandler(new ClickHandler() {
       @Override
-      public void onClick(ClickEvent event) {
+      public void onClick(final ClickEvent event) {
         onEditClickCallback.goBack();
       }
     });
 
     Window.addResizeHandler(new ResizeHandler() {
       @Override
-      public void onResize(ResizeEvent event) {
+      public void onResize(final ResizeEvent event) {
         redraw();
       }
     });
@@ -78,7 +78,8 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   public String getSelectedDate() {
     if (list.getSelectedIndex() == -1) {
       return "";
-    } else {
+    }
+    else {
       return list.getValue(list.getSelectedIndex());
     }
   }
@@ -91,8 +92,8 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
       ft.setWidget(0, 0, list);
       ft.setWidget(1, 0, addButton);
       ft.setWidget(2, 0, editButton);
-
-    } else { // landscape
+    }
+    else { // landscape
       hp.clear();
       hp.add(addButton);
       hp.add(editButton);
@@ -103,20 +104,26 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   }
 
   @Override
-  public void setAddCallback(SimpleCallback<Object> callback) {
+  public void setAddCallback(final SimpleCallback<Object> callback) {
     onAddClickCallback= callback;
   }
 
   @Override
-  public void setEditCallback(SimpleCallback<Object> callback) {
+  public void setEditCallback(final SimpleCallback<Object> callback) {
     onEditClickCallback= callback;
   }
 
   @Override
-  public void setEntryData(int i, String date, String title, String text, int mood) {
+  public void setEntryData(
+    final int i,
+    final String date,
+    final String title,
+    final String text,
+    final int mood) {
     if (text.length() < 50) {
       list.addItem(date + ": (" + title + ") " + text, date);
-    } else {
+    }
+    else {
       list.addItem(date + ": (" + title + ") " + text.substring(0, 50) + "...", date);
     }
   }

@@ -34,12 +34,12 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
      * assume there was no connectivity, so the first time the test succeeds,
      * we'll try to update the server.
      */
-    model.testConnectivity(5, new AsyncCallback<Void>() {
+    model.testConnection(5, new AsyncCallback<Void>() {
       Status wasOnline= Status.UNTESTED;
 
 
       @Override
-      public void onFailure(Throwable caught) {
+      public void onFailure(final Throwable caught) {
         if (wasOnline != Status.OFFLINE) {
           Window.setTitle("Diary (OFFLINE)");
           wasOnline= Status.OFFLINE;
@@ -47,7 +47,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
       }
 
       @Override
-      public void onSuccess(Void result) {
+      public void onSuccess(final Void result) {
         if (wasOnline != Status.ONLINE) {
           Window.setTitle("Diary (Online)");
           model.putPendingEntries();
@@ -58,7 +58,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
   }
 
   @Override
-  public void onValueChange(ValueChangeEvent<String> event) {
+  public void onValueChange(final ValueChangeEvent<String> event) {
     environment.launch(event.getValue());
   }
 }

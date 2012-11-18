@@ -11,7 +11,6 @@ import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
 import com.kereki.gwtmobile.shared.DiaryEntry;
 
 public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
-
   public static String PLACE= "singleentry";
 
 
@@ -34,8 +33,8 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
       singleEntryDisplay.setEntryTitle(toEdit.title);
       singleEntryDisplay.setEntryText(toEdit.text);
       singleEntryDisplay.setMood(toEdit.mood);
-
-    } else {
+    }
+    else {
       dateToEdit= DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
       singleEntryDisplay.setViewTitle("Add Entry");
       singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
@@ -46,14 +45,14 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
 
     singleEntryDisplay.setSaveCallback(new SimpleCallback<Object>() {
       @Override
-      public void goBack(Object result) {
+      public void goBack(final Object result) {
         environment.getModel().putEntry(
           new DiaryEntry(singleEntryDisplay.getEntryDate(), singleEntryDisplay
             .getEntryTitle(), singleEntryDisplay.getEntryText(), singleEntryDisplay
             .getMood()), new SimpleCallback<Void>() {
 
             @Override
-            public void goBack(Void result) {
+            public void goBack(final Void result) {
               environment.launch(AllEntriesPresenter.PLACE);
             }
           });
@@ -62,7 +61,7 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
 
     singleEntryDisplay.setCancelCallback(new SimpleCallback<Object>() {
       @Override
-      public void goBack(Object result) {
+      public void goBack(final Object result) {
         environment.launch(AllEntriesPresenter.PLACE);
       }
     });

@@ -79,7 +79,7 @@ public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
     saveButton.setWidth("100%");
     saveButton.addClickHandler(new ClickHandler() {
       @Override
-      public void onClick(ClickEvent event) {
+      public void onClick(final ClickEvent event) {
         onSaveClickCallback.goBack();
       }
     });
@@ -87,21 +87,21 @@ public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
     cancelButton.setWidth("100%");
     cancelButton.addClickHandler(new ClickHandler() {
       @Override
-      public void onClick(ClickEvent event) {
+      public void onClick(final ClickEvent event) {
         onCancelClickCallback.goBack();
       }
     });
 
     moodPicker.addChangeHandler(new ChangeHandler() {
       @Override
-      public void onChange(ChangeEvent event) {
+      public void onChange(final ChangeEvent event) {
         setMoodIcon(getMood());
       }
     });
 
     Window.addResizeHandler(new ResizeHandler() {
       @Override
-      public void onResize(ResizeEvent event) {
+      public void onResize(final ResizeEvent event) {
         redraw();
       }
     });
@@ -154,7 +154,8 @@ public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
       ft.getFlexCellFormatter().setAlignment(9, 0, HasHorizontalAlignment.ALIGN_RIGHT,
         HasVerticalAlignment.ALIGN_TOP);
 
-    } else { // landscape
+    }
+    else { // landscape
       ft.clear();
       hp1.clear();
       hp1.add(moodPicker);
@@ -186,42 +187,42 @@ public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
   }
 
   @Override
-  public void setCancelCallback(SimpleCallback<Object> callback) {
+  public void setCancelCallback(final SimpleCallback<Object> callback) {
     onCancelClickCallback= callback;
   }
 
   @Override
-  public void setEntryDate(String date) {
+  public void setEntryDate(final String date) {
     dateTextbox.setValue(date);
   }
 
   @Override
-  public void setEntryText(String text) {
+  public void setEntryText(final String text) {
     textTextarea.setValue(text);
   }
 
   @Override
-  public void setEntryTitle(String title) {
+  public void setEntryTitle(final String title) {
     titleTextbox.setValue(title);
   }
 
   @Override
-  public void setMood(int mood) {
+  public void setMood(final int mood) {
     moodPicker.setSelectedIndex(mood);
     setMoodIcon(mood);
   }
 
-  private void setMoodIcon(int mood) {
+  private void setMoodIcon(final int mood) {
     moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
   }
 
   @Override
-  public void setSaveCallback(SimpleCallback<Object> callback) {
+  public void setSaveCallback(final SimpleCallback<Object> callback) {
     onSaveClickCallback= callback;
   }
 
   @Override
-  public void setViewTitle(String viewTitle) {
+  public void setViewTitle(final String viewTitle) {
     title.setHTML("<H1>" + viewTitle + " (Mobile)</H1>");
   }
 }

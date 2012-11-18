@@ -20,7 +20,7 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
 
     environment.getModel().getListOfEntries(new SimpleCallback<ListOfEntries>() {
       @Override
-      public void goBack(ListOfEntries result) {
+      public void goBack(final ListOfEntries result) {
         for (int i= 0; i < result.size(); i++) {
           allEntriesDisplay.setEntryData(i, result.get(i).date, result.get(i).title,
             result.get(i).text, result.get(i).mood);
@@ -30,17 +30,18 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
 
     allEntriesDisplay.setAddCallback(new SimpleCallback<Object>() {
       @Override
-      public void goBack(Object result) {
+      public void goBack(final Object result) {
         environment.launch(SingleEntryPresenter.PLACE + "?date=");
       }
     });
 
     allEntriesDisplay.setEditCallback(new SimpleCallback<Object>() {
       @Override
-      public void goBack(Object result) {
+      public void goBack(final Object result) {
         if (allEntriesDisplay.getSelectedDate().isEmpty()) {
           environment.launch(SingleEntryPresenter.PLACE + "?date=");
-        } else {
+        }
+        else {
           environment.launch(SingleEntryPresenter.PLACE + "?date="
             + allEntriesDisplay.getSelectedDate());
         }

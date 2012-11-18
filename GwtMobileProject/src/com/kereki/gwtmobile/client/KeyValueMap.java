@@ -44,7 +44,8 @@ public class KeyValueMap extends HashMap<String, String> {
         int equalIndex= element.indexOf("=");
         if (equalIndex == -1) {
           put(element, "");
-        } else {
+        }
+        else {
           put(element.substring(0, equalIndex), element.substring(equalIndex + 1));
         }
       }

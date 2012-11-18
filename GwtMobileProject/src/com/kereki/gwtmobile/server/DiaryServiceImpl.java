@@ -20,10 +20,11 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
 
 
   @Override
-  public void putEntry(DiaryEntry myEntry) throws RuntimeException {
+  public void putEntry(final DiaryEntry myEntry) throws RuntimeException {
     if (myEntry == null) {
       throw new RuntimeException("myEntry must be non-null");
-    } else {
+    }
+    else {
       try {
         connectToDatabase();
 
@@ -42,8 +43,8 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
         stmt.close();
 
         disconnectFromDatabase();
-
-      } catch (final Exception e) {
+      }
+      catch (final Exception e) {
         throw new RuntimeException("Cannot INSERT or UPDATE - " + e.getMessage());
       }
     }
@@ -70,8 +71,8 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
       stmt.close();
 
       disconnectFromDatabase();
-
-    } catch (final Exception e) {
+    }
+    catch (final Exception e) {
       throw new RuntimeException("Couldn't get list - " + e.getMessage());
     }
 
@@ -89,7 +90,7 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
   }
 
   @Override
-  public String ping(String pong) {
+  public String ping(final String pong) {
     return pong;
   }
 }

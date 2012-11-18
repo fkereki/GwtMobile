@@ -5,12 +5,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public abstract class SimpleCallback<T> implements AsyncCallback<T> {
 
   @Override
-  public final void onFailure(Throwable caught) {
+  public final void onFailure(final Throwable caught) {
     // Should never be used...
   }
 
   @Override
-  public final void onSuccess(T result) {
+  public final void onSuccess(final T result) {
     goBack(result);
   }
 

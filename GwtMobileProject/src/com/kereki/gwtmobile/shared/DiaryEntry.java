@@ -15,7 +15,12 @@ public class DiaryEntry implements Serializable {
   public DiaryEntry() {
   }
 
-  public DiaryEntry(String myDateTime, String myTitle, String myText, int myMood) {
+  public DiaryEntry(
+    final String myDateTime,
+    final String myTitle,
+    final String myText,
+    final int myMood) {
+
     date= myDateTime;
     title= myTitle;
     text= myText;
