@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.kereki.gwtmobile.client.DiaryService;
 import com.kereki.gwtmobile.shared.DiaryEntry;
@@ -30,15 +29,16 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
   }
 
   @Override
-  public ListOfEntries getAllEntries() throws RuntimeException {
+  public ListOfEntries getAllEntries(final String user) throws RuntimeException {
     ListOfEntries myList= new ListOfEntries();
 
     try {
       connectToDatabase();
 
-      final Statement stmt= conn.createStatement();
-      final ResultSet rs= stmt
-        .executeQuery("SELECT * FROM entries ORDER BY entryDate DESC");
+      final PreparedStatement stmt= conn
+        .prepareStatement("SELECT * FROM entries WHERE entryUser=? ORDER BY entryDate DESC");
+      stmt.setString(1, user);
+      final ResultSet rs= stmt.executeQuery();
       while (rs.next()) {
         /*
          * The weird substring(...) call is to avoid an extra ".0" that gets
@@ -49,11 +49,11 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
           .getInt("entryMood")));
       }
       stmt.close();
-
       disconnectFromDatabase();
     }
     catch (final Exception e) {
-      throw new RuntimeException("Couldn't get list - " + e.getMessage());
+      throw new RuntimeException("Couldn't get entries for user " + user + " - "
+        + e.getMessage());
     }
 
     return myList;
@@ -86,17 +86,19 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
       try {
         connectToDatabase();
 
-        final PreparedStatement stmt= conn.prepareStatement("INSERT INTO entries "
-          + "(entryDate, entryTitle, entryText, entryMood) VALUES (?, ?, ?, ?) "
-          + "ON DUPLICATE KEY UPDATE entryTitle=?, entryText=?, entryMood=?");
+        final PreparedStatement stmt= conn
+          .prepareStatement("INSERT INTO entries "
+            + "(entryUser, entryDate, entryTitle, entryText, entryMood) VALUES (?, ?, ?, ?) "
+            + "ON DUPLICATE KEY UPDATE entryTitle=?, entryText=?, entryMood=?");
 
-        stmt.setString(1, myEntry.date);
-        stmt.setString(2, myEntry.title);
-        stmt.setString(3, myEntry.text);
-        stmt.setInt(4, myEntry.mood);
-        stmt.setString(5, myEntry.title);
-        stmt.setString(6, myEntry.text);
-        stmt.setInt(7, myEntry.mood);
+        stmt.setString(1, myEntry.user);
+        stmt.setString(2, myEntry.date);
+        stmt.setString(3, myEntry.title);
+        stmt.setString(4, myEntry.text);
+        stmt.setInt(5, myEntry.mood);
+        stmt.setString(6, myEntry.title);
+        stmt.setString(7, myEntry.text);
+        stmt.setInt(8, myEntry.mood);
         stmt.execute();
         stmt.close();
 

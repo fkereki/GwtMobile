@@ -36,9 +36,11 @@ public class Model {
     return null;
   }
 
-  public void getListOfEntries(final AsyncCallback<ListOfEntries> callback) {
+  public void getListOfEntries(
+    final String user,
+    final AsyncCallback<ListOfEntries> callback) {
 
-    diaryService.getAllEntries(new AsyncCallback<ListOfEntries>() {
+    diaryService.getAllEntries(user, new AsyncCallback<ListOfEntries>() {
 
       @Override
       public void onFailure(final Throwable caught) {
@@ -54,8 +56,10 @@ public class Model {
             if (((String) cacheKey).startsWith(PREFIX)) {
               String date= ((String) cacheKey).substring(PREFIX.length());
               String[] parts= cache.get(cacheKey).split(SEPARATOR);
-              myList.add(new DiaryEntry(parts[0], date, parts[1], parts[2], Integer
-                .parseInt(parts[3])));
+              if (parts[0].equals(user)) {
+                myList.add(new DiaryEntry(parts[0], date, parts[1], parts[2], Integer
+                  .parseInt(parts[3])));
+              }
             }
           }
         }

@@ -10,7 +10,7 @@ import com.kereki.gwtmobile.shared.ListOfEntries;
  */
 @RemoteServiceRelativePath("diary")
 public interface DiaryService extends RemoteService {
-  ListOfEntries getAllEntries();
+  ListOfEntries getAllEntries(final String user);
 
   boolean login(final String user, final String password);
 
