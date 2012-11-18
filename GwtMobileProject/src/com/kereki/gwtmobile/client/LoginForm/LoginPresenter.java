@@ -1,6 +1,5 @@
 package com.kereki.gwtmobile.client.LoginForm;
 
-import com.google.gwt.user.client.Window;
 import com.kereki.gwtmobile.client.Environment;
 import com.kereki.gwtmobile.client.Presenter;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
@@ -30,12 +29,12 @@ public class LoginPresenter extends Presenter<LoginDisplay> {
           @Override
           public void goBack(final Boolean result) {
             if (result) {
-              Window.alert("User " + user + " accepted.");
+              environment.showAlert("User " + user + " accepted.");
               environment.setUser(user);
               environment.launch(AllEntriesPresenter.PLACE);
             }
             else {
-              Window.alert("User " + user + " rejected.");
+              environment.showAlert("User " + user + " not recognized; try again.");
             }
           }
         });

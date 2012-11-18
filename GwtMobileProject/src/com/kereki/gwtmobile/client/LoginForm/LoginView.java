@@ -50,6 +50,7 @@ public class LoginView extends View implements LoginDisplay {
     vp.add(title);
     vp.add(ft);
 
+    redraw();
     initWidget(vp);
   }
 
@@ -61,12 +62,14 @@ public class LoginView extends View implements LoginDisplay {
       ft.setWidget(1, 0, userTextbox);
       ft.setWidget(2, 0, passwordLabel);
       ft.setWidget(3, 0, passwordTextbox);
+      ft.setWidget(4, 0, loginButton);
     }
     else { // landscape
       ft.setWidget(0, 0, userLabel);
       ft.setWidget(0, 1, userTextbox);
       ft.setWidget(1, 0, passwordLabel);
       ft.setWidget(1, 1, passwordTextbox);
+      ft.setWidget(2, 1, loginButton);
     }
   }
 

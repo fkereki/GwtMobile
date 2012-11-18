@@ -50,9 +50,11 @@ public class Environment {
       // no need to do anything...
 
     }
-    else if (currentUser.equals("") | token.equals(LoginPresenter.PLACE)) {
-      new LoginPresenter("", viewFactory.getLoginView(), self);
-
+    else if (currentUser.isEmpty() | token.equals(LoginPresenter.PLACE)) {
+      LoginPresenter loginPresenter= new LoginPresenter("", viewFactory.getLoginView(),
+        self);
+      RootPanel.get().clear();
+      RootPanel.get().add(loginPresenter.getDisplay().asWidget());
 
     }
     else if (token.equals(AllEntriesPresenter.PLACE)) {
@@ -70,6 +72,7 @@ public class Environment {
           RootPanel.get().add(allEntriesPresenter.getDisplay().asWidget());
         }
       });
+
     }
     else if (token.equals(SingleEntryPresenter.PLACE)) {
       GWT.runAsync(new RunAsyncCallback() {
@@ -86,6 +89,7 @@ public class Environment {
           RootPanel.get().add(singleEntryPresenter.getDisplay().asWidget());
         }
       });
+
     }
     else {
       showAlert("Unrecognized token=" + token);

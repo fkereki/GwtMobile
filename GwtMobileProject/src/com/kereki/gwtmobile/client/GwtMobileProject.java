@@ -7,7 +7,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.LoginForm.LoginPresenter;
 import com.kereki.gwtmobile.client.ViewFactory.ViewFactory;
 
 enum Status {
@@ -27,7 +27,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
     History.addValueChangeHandler(this);
     diaryResources.css().ensureInjected();
     environment= new Environment(model, viewFactory);
-    environment.launch(AllEntriesPresenter.PLACE);
+    environment.launch(LoginPresenter.PLACE);
 
     /*
      * Set up a connectivity test every 5 seconds. If connection was down, and

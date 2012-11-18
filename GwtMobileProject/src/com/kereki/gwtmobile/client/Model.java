@@ -62,9 +62,11 @@ public class Model {
               }
             }
           }
+          callback.onSuccess(myList);
         }
-
-        callback.onSuccess(myList);
+        else {
+          callback.onFailure(new RuntimeException("Couldn't get entries..."));
+        }
       }
 
       @Override
@@ -111,11 +113,14 @@ public class Model {
          * On failure, add the entry to the cache and mark it as pending
          */
         if (localStorage != null) {
-          cache.put(PREFIX + myEntry.date, myEntry.title + SEPARATOR + myEntry.text
-            + SEPARATOR + myEntry.mood);
+          cache.put(PREFIX + myEntry.date, myEntry.user + SEPARATOR + myEntry.title
+            + SEPARATOR + myEntry.text + SEPARATOR + myEntry.mood);
           cache.put(PREFIX_PENDING + myEntry.date, myEntry.date);
+          callback.onSuccess(null);
         }
-        callback.onSuccess(null);
+        else {
+          callback.onFailure(new RuntimeException("Couldn't put entry..."));
+        }
       }
 
       @Override
@@ -131,6 +136,7 @@ public class Model {
 
 
   public void putPendingEntries() {
+
     if (localStorage != null) {
       Object[] cacheKeys= cache.keySet().toArray();
       for (Object cacheKey : cacheKeys) {
@@ -139,8 +145,7 @@ public class Model {
           String[] parts= cache.get(PREFIX + date).split(SEPARATOR);
           DiaryEntry entry= new DiaryEntry(parts[0], date, parts[1], parts[2],
             Integer.parseInt(parts[3]));
-          cache.remove(cacheKey); // remove it; if the PUT fails, it will be
-                                  // added again
+          cache.remove(cacheKey); // if PUT fails, it will be added again
           putEntry(entry, new SimpleCallback<Void>() {
             @Override
             public void goBack(final Void result) {
