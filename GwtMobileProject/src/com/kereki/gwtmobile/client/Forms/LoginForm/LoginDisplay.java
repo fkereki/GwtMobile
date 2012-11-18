@@ -1,6 +1,6 @@
-package com.kereki.gwtmobile.client.LoginForm;
+package com.kereki.gwtmobile.client.Forms.LoginForm;
 
-import com.kereki.gwtmobile.client.Display;
+import com.kereki.gwtmobile.client.MVP.Display;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 public interface LoginDisplay extends Display {

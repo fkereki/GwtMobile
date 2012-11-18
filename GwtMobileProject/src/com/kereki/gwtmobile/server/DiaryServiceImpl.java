@@ -61,14 +61,25 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
 
   @Override
   public boolean login(final String user, final String password) {
-    if ((user.equals("mary") & password.equals("poppins"))
-      | (user.equals("eliza") & password.equals("doolittle"))
-      | (user.equals("maria") & password.equals("rainer"))) {
-      return true;
+    boolean result= false;
+    try {
+      connectToDatabase();
+
+      final PreparedStatement stmt= conn
+        .prepareStatement("SELECT COUNT(*) AS nn FROM users WHERE userName=? AND userPassword=?");
+      stmt.setString(1, user);
+      stmt.setString(2, password);
+      final ResultSet rs= stmt.executeQuery();
+      rs.next();
+      result= (rs.getInt("nn") == 1);
+      stmt.close();
+      disconnectFromDatabase();
     }
-    else {
-      return false;
+    catch (final Exception e) {
+      throw new RuntimeException("Couldn't get entries for user " + user + " - "
+        + e.getMessage());
     }
+    return result;
   }
 
   @Override
@@ -88,7 +99,7 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
 
         final PreparedStatement stmt= conn
           .prepareStatement("INSERT INTO entries "
-            + "(entryUser, entryDate, entryTitle, entryText, entryMood) VALUES (?, ?, ?, ?) "
+            + "(entryUser, entryDate, entryTitle, entryText, entryMood) VALUES (?, ?, ?, ?, ?) "
             + "ON DUPLICATE KEY UPDATE entryTitle=?, entryText=?, entryMood=?");
 
         stmt.setString(1, myEntry.user);

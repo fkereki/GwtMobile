@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client.AllEntriesForm;
+package com.kereki.gwtmobile.client.Forms.AllEntriesForm;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,11 +11,11 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.MVP.View;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 
-public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
+public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
 
   private final HTML title= new HTML();
   private final VerticalPanel vp= new VerticalPanel();
@@ -29,7 +29,7 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   SimpleCallback<Object> onEditClickCallback;
 
 
-  public AllEntriesViewDesktop() {
+  public AllEntriesViewMobile() {
     addButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(final ClickEvent event) {
@@ -63,7 +63,7 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
     list.setVisibleItemCount(15);
     list.setWidth("100%");
 
-    title.setHTML("<H1>All entries (Desktop Version)</H1>");
+    title.setHTML("<H1>All entries (Mobile)</H1>");
 
     vp.setWidth("100%");
     vp.setHeight("100%");
@@ -116,14 +116,12 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   @Override
   public void setEntryData(
     final int i,
-    final String aDate,
-    final String aTitle,
-    final String aText) {
-    if (aText.length() < 50) {
-      list.addItem(aDate + ": (" + aTitle + ") " + aText, aDate);
-    }
-    else {
-      list.addItem(aDate + ": (" + aTitle + ") " + aText.substring(0, 50) + "...", aDate);
-    }
+    final String date,
+    final String title,
+    final String text) {
+    /*
+     * Let's show just the date part; space is at a premium
+     */
+    list.addItem(date.substring(0, 10) + ": " + title, date);
   }
 }

@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client.SingleEntryForm;
+package com.kereki.gwtmobile.client.Forms.SingleEntryForm;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -18,17 +18,15 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.MVP.View;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 
-public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
+public class SingleEntryViewMobile extends View implements SingleEntryDisplay {
 
   private final HTML title= new HTML();
-  private final VerticalPanel vp= new VerticalPanel();
   private final FlexTable ft= new FlexTable();
-  private final Label dateLabel= new Label("Date:");
+  private final Label dateLabel= new Label("MOBILE Date:");
   private final Label titleLabel= new Label("Title:");
   private final Label textLabel= new Label("Text:");
   private final Label moodLabel= new Label("Mood:");
@@ -46,45 +44,14 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
   SimpleCallback<Object> onCancelClickCallback;
 
 
-  public SingleEntryViewDesktop() {
-    cancelButton.addClickHandler(new ClickHandler() {
-      @Override
-      public void onClick(final ClickEvent event) {
-        onCancelClickCallback.goBack();
-      }
-    });
-
-    moodPicker.addChangeHandler(new ChangeHandler() {
-      @Override
-      public void onChange(final ChangeEvent event) {
-        setMoodIcon(getMood());
-      }
-    });
-
-    saveButton.addClickHandler(new ClickHandler() {
-      @Override
-      public void onClick(final ClickEvent event) {
-        onSaveClickCallback.goBack();
-      }
-    });
-
-    Window.addResizeHandler(new ResizeHandler() {
-      @Override
-      public void onResize(final ResizeEvent event) {
-        redraw();
-      }
-    });
-
-    cancelButton.setWidth("100%");
-
+  public SingleEntryViewMobile() {
     dateTextbox.setReadOnly(true);
-    dateTextbox.setWidth("100%");
 
-    ft.setWidth("100%");
-    ft.setHeight("100%");
+    dateTextbox.setWidth("100%");
+    titleTextbox.setWidth("100%");
+    textTextarea.setWidth("100%");
 
     hp1.setWidth("100%");
-
     hp2.setWidth("100%");
 
     moodPicker.setWidth("100%");
@@ -110,19 +77,39 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
     moodPicker.addItem("XP");
 
     saveButton.setWidth("100%");
+    saveButton.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(final ClickEvent event) {
+        onSaveClickCallback.goBack();
+      }
+    });
 
-    textTextarea.setWidth("100%");
+    cancelButton.setWidth("100%");
+    cancelButton.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(final ClickEvent event) {
+        onCancelClickCallback.goBack();
+      }
+    });
 
-    title.setHTML("...");
-    titleTextbox.setWidth("100%");
+    moodPicker.addChangeHandler(new ChangeHandler() {
+      @Override
+      public void onChange(final ChangeEvent event) {
+        setMoodIcon(getMood());
+      }
+    });
 
-    vp.setWidth("100%");
-    vp.setHeight("100%");
-    vp.add(title);
-    vp.add(ft);
+    Window.addResizeHandler(new ResizeHandler() {
+      @Override
+      public void onResize(final ResizeEvent event) {
+        redraw();
+      }
+    });
 
+    ft.setWidth("100%");
+    ft.setHeight("100%");
     redraw();
-    initWidget(vp);
+    initWidget(ft);
   }
 
   @Override
@@ -147,9 +134,10 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
 
   @Override
   public void redraw() {
-    ft.clear();
-    hp1.clear();
     if (Window.getClientHeight() > Window.getClientWidth()) { // portrait
+      ft.clear();
+      hp1.clear();
+
       ft.setWidget(0, 0, dateLabel);
       ft.setWidget(1, 0, dateTextbox);
       ft.setWidget(2, 0, titleLabel);
@@ -165,8 +153,11 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
         HasVerticalAlignment.ALIGN_TOP);
       ft.getFlexCellFormatter().setAlignment(9, 0, HasHorizontalAlignment.ALIGN_RIGHT,
         HasVerticalAlignment.ALIGN_TOP);
+
     }
     else { // landscape
+      ft.clear();
+      hp1.clear();
       hp1.add(moodPicker);
       hp1.add(moodIcon);
 
@@ -231,7 +222,7 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
   }
 
   @Override
-  public void setViewTitle(final String viewTitle) {
-    title.setHTML("<H1>" + viewTitle + " (Desktop Version)</H1>");
+  public void setViewTitle(final String aViewTitle) {
+    title.setHTML("<H1>" + aViewTitle + " (Mobile)</H1>");
   }
 }

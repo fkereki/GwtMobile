@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client.SingleEntryForm;
+package com.kereki.gwtmobile.client.Forms.SingleEntryForm;
 
 
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.MVP.View;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 

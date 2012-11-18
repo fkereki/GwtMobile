@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client.AllEntriesForm;
+package com.kereki.gwtmobile.client.Forms.AllEntriesForm;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,11 +11,11 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.MVP.View;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 
-public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
+public class AllEntriesViewTablet extends View implements AllEntriesDisplay {
 
   private final HTML title= new HTML();
   private final VerticalPanel vp= new VerticalPanel();
@@ -29,7 +29,7 @@ public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
   SimpleCallback<Object> onEditClickCallback;
 
 
-  public AllEntriesViewMobile() {
+  public AllEntriesViewTablet() {
     addButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(final ClickEvent event) {
@@ -63,7 +63,7 @@ public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
     list.setVisibleItemCount(15);
     list.setWidth("100%");
 
-    title.setHTML("<H1>All entries (Mobile)</H1>");
+    title.setHTML("<H1>All entries (Tablet Version)</H1>");
 
     vp.setWidth("100%");
     vp.setHeight("100%");
@@ -116,12 +116,9 @@ public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
   @Override
   public void setEntryData(
     final int i,
-    final String date,
-    final String title,
-    final String text) {
-    /*
-     * Let's show just the date part; space is at a premium
-     */
-    list.addItem(date.substring(0, 10) + ": " + title, date);
+    final String aDate,
+    final String aTitle,
+    final String aText) {
+    list.addItem(aDate + ": " + aTitle, aDate);
   }
 }

@@ -1,10 +1,10 @@
-package com.kereki.gwtmobile.client.SingleEntryForm;
+package com.kereki.gwtmobile.client.Forms.SingleEntryForm;
 
 import java.util.Date;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.kereki.gwtmobile.client.Environment;
-import com.kereki.gwtmobile.client.Presenter;
-import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.MVP.Environment;
+import com.kereki.gwtmobile.client.MVP.Presenter;
 import com.kereki.gwtmobile.client.Utilities.Html;
 import com.kereki.gwtmobile.client.Utilities.KeyValueMap;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;

@@ -7,8 +7,10 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.kereki.gwtmobile.client.LoginForm.LoginPresenter;
-import com.kereki.gwtmobile.client.ViewFactory.ViewFactory;
+import com.kereki.gwtmobile.client.Forms.ViewFactory;
+import com.kereki.gwtmobile.client.Forms.LoginForm.LoginPresenter;
+import com.kereki.gwtmobile.client.MVP.Environment;
+import com.kereki.gwtmobile.client.MVP.Model;
 
 enum Status {
   UNTESTED, OFFLINE, ONLINE

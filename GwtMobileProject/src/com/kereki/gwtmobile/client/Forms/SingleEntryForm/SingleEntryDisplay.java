@@ -1,6 +1,6 @@
-package com.kereki.gwtmobile.client.SingleEntryForm;
+package com.kereki.gwtmobile.client.Forms.SingleEntryForm;
 
-import com.kereki.gwtmobile.client.Display;
+import com.kereki.gwtmobile.client.MVP.Display;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 public interface SingleEntryDisplay extends Display {

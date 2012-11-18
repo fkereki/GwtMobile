@@ -21,18 +21,18 @@
             </none>
     </set-property>
     
-    <replace-with class="com.kereki.gwtmobile.client.ViewFactory.ViewFactoryDesktop" >
-        <when-type-is class="com.kereki.gwtmobile.client.ViewFactory.ViewFactory" />
+    <replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryDesktop" >
+        <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
         <when-property-is name="formfactor" value="desktop" />
     </replace-with>
 
-    <replace-with class="com.kereki.gwtmobile.client.ViewFactory.ViewFactoryMobile" >
-        <when-type-is class="com.kereki.gwtmobile.client.ViewFactory.ViewFactory" />
+    <replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryMobile" >
+        <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
         <when-property-is name="formfactor" value="mobile" />
     </replace-with>
 
-    <replace-with class="com.kereki.gwtmobile.client.ViewFactory.ViewFactoryTablet" >
-        <when-type-is class="com.kereki.gwtmobile.client.ViewFactory.ViewFactory" />
+    <replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryTablet" >
+        <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
         <when-property-is name="formfactor" value="tablet" />
     </replace-with>
 

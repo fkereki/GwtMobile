@@ -1,11 +1,14 @@
-package com.kereki.gwtmobile.client;
+package com.kereki.gwtmobile.client.MVP;
 
 import java.util.Date;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.kereki.gwtmobile.client.DiaryService;
+import com.kereki.gwtmobile.client.DiaryServiceAsync;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 import com.kereki.gwtmobile.shared.DiaryEntry;
 import com.kereki.gwtmobile.shared.ListOfEntries;
@@ -105,6 +108,9 @@ public class Model {
   }
 
   public void putEntry(final DiaryEntry myEntry, final AsyncCallback<Void> callback) {
+
+    Window.alert(myEntry.date + " " + myEntry.user);
+
     diaryService.putEntry(myEntry, new AsyncCallback<Void>() {
 
       @Override
@@ -125,9 +131,10 @@ public class Model {
 
       @Override
       public void onSuccess(final Void result) {
-        /**
-         * On success, just return
-         */
+        if (localStorage != null) {
+          cache.put(PREFIX + myEntry.date, myEntry.user + SEPARATOR + myEntry.title
+            + SEPARATOR + myEntry.text + SEPARATOR + myEntry.mood);
+        }
         callback.onSuccess(null);
       }
     });

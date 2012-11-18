@@ -1,14 +1,14 @@
-package com.kereki.gwtmobile.client;
+package com.kereki.gwtmobile.client.MVP;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
-import com.kereki.gwtmobile.client.LoginForm.LoginPresenter;
-import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
-import com.kereki.gwtmobile.client.ViewFactory.ViewFactory;
+import com.kereki.gwtmobile.client.Forms.ViewFactory;
+import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.Forms.LoginForm.LoginPresenter;
+import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryPresenter;
 
 public class Environment {
   final Environment self= this;

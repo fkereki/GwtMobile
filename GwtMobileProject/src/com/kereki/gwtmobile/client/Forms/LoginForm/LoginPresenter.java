@@ -1,8 +1,8 @@
-package com.kereki.gwtmobile.client.LoginForm;
+package com.kereki.gwtmobile.client.Forms.LoginForm;
 
-import com.kereki.gwtmobile.client.Environment;
-import com.kereki.gwtmobile.client.Presenter;
-import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.MVP.Environment;
+import com.kereki.gwtmobile.client.MVP.Presenter;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 public class LoginPresenter extends Presenter<LoginDisplay> {

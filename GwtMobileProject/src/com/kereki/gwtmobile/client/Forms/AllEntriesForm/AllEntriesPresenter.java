@@ -1,8 +1,8 @@
-package com.kereki.gwtmobile.client.AllEntriesForm;
+package com.kereki.gwtmobile.client.Forms.AllEntriesForm;
 
-import com.kereki.gwtmobile.client.Environment;
-import com.kereki.gwtmobile.client.Presenter;
-import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.client.MVP.Environment;
+import com.kereki.gwtmobile.client.MVP.Presenter;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 import com.kereki.gwtmobile.shared.ListOfEntries;
 

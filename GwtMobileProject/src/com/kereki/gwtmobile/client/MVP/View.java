@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client;
+package com.kereki.gwtmobile.client.MVP;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
