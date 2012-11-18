@@ -3,11 +3,11 @@ package com.kereki.gwtmobile.client.SingleEntryForm;
 import java.util.Date;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.kereki.gwtmobile.client.Environment;
-import com.kereki.gwtmobile.client.Html;
-import com.kereki.gwtmobile.client.KeyValueMap;
 import com.kereki.gwtmobile.client.Presenter;
-import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.Utilities.Html;
+import com.kereki.gwtmobile.client.Utilities.KeyValueMap;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 import com.kereki.gwtmobile.shared.DiaryEntry;
 
 public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
@@ -47,9 +47,9 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
       @Override
       public void goBack(final Object result) {
         environment.getModel().putEntry(
-          new DiaryEntry(singleEntryDisplay.getEntryDate(), singleEntryDisplay
-            .getEntryTitle(), singleEntryDisplay.getEntryText(), singleEntryDisplay
-            .getMood()), new SimpleCallback<Void>() {
+          new DiaryEntry(environment.getUser(), singleEntryDisplay.getEntryDate(),
+            singleEntryDisplay.getEntryTitle(), singleEntryDisplay.getEntryText(),
+            singleEntryDisplay.getMood()), new SimpleCallback<Void>() {
 
             @Override
             public void goBack(final Void result) {

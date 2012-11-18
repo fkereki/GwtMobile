@@ -19,6 +19,64 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
   private Connection conn= null;
 
 
+  private void connectToDatabase() throws Exception {
+    DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+    Class.forName("com.mysql.jdbc.Driver");
+    conn= DriverManager.getConnection(jdbc_url, mysql_user, mysql_password);
+  }
+
+  private void disconnectFromDatabase() throws Exception {
+    conn.close();
+  }
+
+  @Override
+  public ListOfEntries getAllEntries() throws RuntimeException {
+    ListOfEntries myList= new ListOfEntries();
+
+    try {
+      connectToDatabase();
+
+      final Statement stmt= conn.createStatement();
+      final ResultSet rs= stmt
+        .executeQuery("SELECT * FROM entries ORDER BY entryDate DESC");
+      while (rs.next()) {
+        /*
+         * The weird substring(...) call is to avoid an extra ".0" that gets
+         * added after conversion of the date to a string
+         */
+        myList.add(new DiaryEntry(rs.getString("entryUser"), rs.getString("entryDate")
+          .substring(0, 19), rs.getString("entryTitle"), rs.getString("entryText"), rs
+          .getInt("entryMood")));
+      }
+      stmt.close();
+
+      disconnectFromDatabase();
+    }
+    catch (final Exception e) {
+      throw new RuntimeException("Couldn't get list - " + e.getMessage());
+    }
+
+    return myList;
+  }
+
+  @Override
+  public boolean login(final String user, final String password) {
+    if ((user.equals("mary") & password.equals("poppins"))
+      | (user.equals("eliza") & password.equals("doolittle"))
+      | (user.equals("maria") & password.equals("rainer"))) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  @Override
+  public String ping(final String pong) {
+    return pong;
+  }
+
+
   @Override
   public void putEntry(final DiaryEntry myEntry) throws RuntimeException {
     if (myEntry == null) {
@@ -48,49 +106,5 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
         throw new RuntimeException("Cannot INSERT or UPDATE - " + e.getMessage());
       }
     }
-  }
-
-  @Override
-  public ListOfEntries getAllEntries() throws RuntimeException {
-    ListOfEntries myList= new ListOfEntries();
-
-    try {
-      connectToDatabase();
-
-      final Statement stmt= conn.createStatement();
-      final ResultSet rs= stmt
-        .executeQuery("SELECT * FROM entries ORDER BY entryDate DESC");
-      while (rs.next()) {
-        /*
-         * The weird substring(...) call is to avoid an extra ".0" that gets
-         * added after conversion of the date to a string
-         */
-        myList.add(new DiaryEntry(rs.getString("entryDate").substring(0, 19), rs
-          .getString("entryTitle"), rs.getString("entryText"), rs.getInt("entryMood")));
-      }
-      stmt.close();
-
-      disconnectFromDatabase();
-    }
-    catch (final Exception e) {
-      throw new RuntimeException("Couldn't get list - " + e.getMessage());
-    }
-
-    return myList;
-  }
-
-  private void connectToDatabase() throws Exception {
-    DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-    Class.forName("com.mysql.jdbc.Driver");
-    conn= DriverManager.getConnection(jdbc_url, mysql_user, mysql_password);
-  }
-
-  private void disconnectFromDatabase() throws Exception {
-    conn.close();
-  }
-
-  @Override
-  public String ping(final String pong) {
-    return pong;
   }
 }

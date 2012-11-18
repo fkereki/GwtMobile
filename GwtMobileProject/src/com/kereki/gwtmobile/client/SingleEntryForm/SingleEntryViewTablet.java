@@ -20,8 +20,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 
 public class SingleEntryViewTablet extends View implements SingleEntryDisplay {

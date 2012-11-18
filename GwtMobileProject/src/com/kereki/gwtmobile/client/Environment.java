@@ -6,12 +6,15 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.kereki.gwtmobile.client.AllEntriesForm.AllEntriesPresenter;
+import com.kereki.gwtmobile.client.LoginForm.LoginPresenter;
 import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.client.ViewFactory.ViewFactory;
 
 public class Environment {
   final Environment self= this;
   final ViewFactory viewFactory;
   final Model model;
+  String currentUser= "";
 
 
   public Environment(final Model aModel, final ViewFactory aViewFactory) {
@@ -21,6 +24,10 @@ public class Environment {
 
   public Model getModel() {
     return model;
+  }
+
+  public String getUser() {
+    return currentUser;
   }
 
   public void launch(String token) {
@@ -41,6 +48,11 @@ public class Environment {
 
     if (token.isEmpty()) {
       // no need to do anything...
+
+    }
+    else if (currentUser.equals("") | token.equals(LoginPresenter.PLACE)) {
+      new LoginPresenter("", viewFactory.getLoginView(), self);
+
 
     }
     else if (token.equals(AllEntriesPresenter.PLACE)) {
@@ -79,6 +91,10 @@ public class Environment {
       showAlert("Unrecognized token=" + token);
       token= "";
     }
+  }
+
+  public void setUser(final String anUser) {
+    currentUser= anUser;
   }
 
   public void showAlert(final String alertText) {

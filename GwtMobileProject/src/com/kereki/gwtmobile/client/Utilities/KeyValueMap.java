@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client;
+package com.kereki.gwtmobile.client.Utilities;
 
 import java.util.HashMap;
 

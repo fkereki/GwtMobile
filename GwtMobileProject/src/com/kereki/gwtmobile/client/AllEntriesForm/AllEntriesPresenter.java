@@ -2,8 +2,8 @@ package com.kereki.gwtmobile.client.AllEntriesForm;
 
 import com.kereki.gwtmobile.client.Environment;
 import com.kereki.gwtmobile.client.Presenter;
-import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 import com.kereki.gwtmobile.shared.ListOfEntries;
 
 public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {

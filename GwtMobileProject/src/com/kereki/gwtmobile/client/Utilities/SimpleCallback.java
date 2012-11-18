@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client;
+package com.kereki.gwtmobile.client.Utilities;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

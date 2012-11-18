@@ -19,8 +19,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 
 public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
@@ -147,10 +147,9 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
 
   @Override
   public void redraw() {
+    ft.clear();
+    hp1.clear();
     if (Window.getClientHeight() > Window.getClientWidth()) { // portrait
-      ft.clear();
-      hp1.clear();
-
       ft.setWidget(0, 0, dateLabel);
       ft.setWidget(1, 0, dateTextbox);
       ft.setWidget(2, 0, titleLabel);
@@ -166,11 +165,8 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
         HasVerticalAlignment.ALIGN_TOP);
       ft.getFlexCellFormatter().setAlignment(9, 0, HasHorizontalAlignment.ALIGN_RIGHT,
         HasVerticalAlignment.ALIGN_TOP);
-
     }
     else { // landscape
-      ft.clear();
-      hp1.clear();
       hp1.add(moodPicker);
       hp1.add(moodIcon);
 

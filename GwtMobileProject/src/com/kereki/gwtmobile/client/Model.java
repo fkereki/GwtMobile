@@ -6,6 +6,7 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 import com.kereki.gwtmobile.shared.DiaryEntry;
 import com.kereki.gwtmobile.shared.ListOfEntries;
 
@@ -40,7 +41,7 @@ public class Model {
     diaryService.getAllEntries(new AsyncCallback<ListOfEntries>() {
 
       @Override
-      public void onFailure(Throwable caught) {
+      public void onFailure(final Throwable caught) {
         /**
          * On DB access failure, try to get whatever we can from the cache, if
          * available
@@ -53,8 +54,8 @@ public class Model {
             if (((String) cacheKey).startsWith(PREFIX)) {
               String date= ((String) cacheKey).substring(PREFIX.length());
               String[] parts= cache.get(cacheKey).split(SEPARATOR);
-              myList.add(new DiaryEntry(date, parts[0], parts[1], Integer
-                .parseInt(parts[2])));
+              myList.add(new DiaryEntry(parts[0], date, parts[1], parts[2], Integer
+                .parseInt(parts[3])));
             }
           }
         }
@@ -63,7 +64,7 @@ public class Model {
       }
 
       @Override
-      public void onSuccess(ListOfEntries result) {
+      public void onSuccess(final ListOfEntries result) {
         /**
          * On DB access success, put everything in the local cache, and then
          * return the list
@@ -73,11 +74,13 @@ public class Model {
 
         if (localStorage != null) {
           for (int i= 0; i < result.size(); i++) {
-            cache.put(PREFIX + result.get(i).date, result.get(i).title + SEPARATOR
-              + result.get(i).text + SEPARATOR + result.get(i).mood);
+            cache.put(
+              PREFIX + result.get(i).date,
+              result.get(i).user + SEPARATOR + result.get(i).title + SEPARATOR
+                + result.get(i).text + SEPARATOR + result.get(i).mood);
 
-            myList.add(new DiaryEntry(result.get(i).date, result.get(i).title, result
-              .get(i).text, result.get(i).mood));
+            myList.add(new DiaryEntry(result.get(i).user, result.get(i).date, result
+              .get(i).title, result.get(i).text, result.get(i).mood));
           }
         }
 
@@ -87,12 +90,19 @@ public class Model {
   }
 
 
+  public void login(
+    final String user,
+    final String password,
+    final SimpleCallback<Boolean> callback) {
+
+    diaryService.login(user, password, callback);
+  }
 
   public void putEntry(final DiaryEntry myEntry, final AsyncCallback<Void> callback) {
     diaryService.putEntry(myEntry, new AsyncCallback<Void>() {
 
       @Override
-      public void onFailure(Throwable caught) {
+      public void onFailure(final Throwable caught) {
         /**
          * On failure, add the entry to the cache and mark it as pending
          */
@@ -105,7 +115,7 @@ public class Model {
       }
 
       @Override
-      public void onSuccess(Void result) {
+      public void onSuccess(final Void result) {
         /**
          * On success, just return
          */
@@ -123,13 +133,13 @@ public class Model {
         if (((String) cacheKey).startsWith(PREFIX_PENDING)) {
           String date= cache.get(cacheKey);
           String[] parts= cache.get(PREFIX + date).split(SEPARATOR);
-          DiaryEntry entry= new DiaryEntry(date, parts[0], parts[1],
-            Integer.parseInt(parts[2]));
+          DiaryEntry entry= new DiaryEntry(parts[0], date, parts[1], parts[2],
+            Integer.parseInt(parts[3]));
           cache.remove(cacheKey); // remove it; if the PUT fails, it will be
                                   // added again
           putEntry(entry, new SimpleCallback<Void>() {
             @Override
-            public void goBack(Void result) {
+            public void goBack(final Void result) {
               // nothing to do; putEntry(...) took care of everything
             }
           });
@@ -148,12 +158,12 @@ public class Model {
         diaryService.ping(currentPing, new AsyncCallback<String>() {
 
           @Override
-          public void onFailure(Throwable caught) {
+          public void onFailure(final Throwable caught) {
             callback.onFailure(null);
           }
 
           @Override
-          public void onSuccess(String result) {
+          public void onSuccess(final String result) {
             /*
              * If the answer comes, but is delayed more than 3 seconds, let's
              * consider it to be offline.
@@ -161,7 +171,8 @@ public class Model {
             final long answerTime= (new Date()).getTime();
             if ((answerTime - sendTime) < 3000) {
               callback.onSuccess(null);
-            } else {
+            }
+            else {
               callback.onFailure(null);
             }
           }

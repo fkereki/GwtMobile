@@ -11,8 +11,8 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.kereki.gwtmobile.client.SimpleCallback;
 import com.kereki.gwtmobile.client.View;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 
 public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {

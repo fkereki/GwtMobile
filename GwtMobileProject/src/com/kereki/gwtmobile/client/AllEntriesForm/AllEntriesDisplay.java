@@ -1,7 +1,7 @@
 package com.kereki.gwtmobile.client.AllEntriesForm;
 
 import com.kereki.gwtmobile.client.Display;
-import com.kereki.gwtmobile.client.SimpleCallback;
+import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 public interface AllEntriesDisplay extends Display {
 

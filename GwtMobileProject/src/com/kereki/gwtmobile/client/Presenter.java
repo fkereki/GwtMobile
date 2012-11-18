@@ -1,5 +1,7 @@
 package com.kereki.gwtmobile.client;
 
+import com.kereki.gwtmobile.client.Utilities.KeyValueMap;
+
 abstract public class Presenter<D> {
   private String params;
   private D display;
