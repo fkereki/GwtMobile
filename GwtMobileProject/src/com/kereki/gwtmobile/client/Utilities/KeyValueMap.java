@@ -22,24 +22,24 @@ public class KeyValueMap extends HashMap<String, String> {
   /**
    * Create a KeyValueMap, and initialize it with the params string.
    * 
-   * @param params
+   * @param parameters
    *          A string with URL-like parameters (see below)
    */
-  public KeyValueMap(final String params) {
-    initializeWithString(params);
+  public KeyValueMap(final String parameters) {
+    initializeWithString(parameters);
   }
 
   /**
    * Initialize a KeyValueMap with a parameters URL-like string.
    * 
-   * @param params
+   * @param parameters
    *          A string formatted like param1=value1&param2=value2&... It is
    *          assumed that the value has been appropriately escaped.
    */
-  public final void initializeWithString(final String params) {
+  public final void initializeWithString(final String parameters) {
     clear();
-    if ((params != null) && !params.isEmpty()) {
-      String[] args= params.split("&");
+    if ((parameters != null) && !parameters.isEmpty()) {
+      String[] args= parameters.split("&");
       for (String element : args) {
         int equalIndex= element.indexOf("=");
         if (equalIndex == -1) {

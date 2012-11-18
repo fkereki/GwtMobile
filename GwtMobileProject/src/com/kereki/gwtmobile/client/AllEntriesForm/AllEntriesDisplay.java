@@ -13,8 +13,7 @@ public interface AllEntriesDisplay extends Display {
 
   void setEntryData(
     final int i,
-    final String date,
-    final String title,
-    final String text,
-    final int mood);
+    final String aDate,
+    final String aTitle,
+    final String aText);
 }

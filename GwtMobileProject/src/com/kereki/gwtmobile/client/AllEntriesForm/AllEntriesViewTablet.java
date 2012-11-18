@@ -116,10 +116,9 @@ public class AllEntriesViewTablet extends View implements AllEntriesDisplay {
   @Override
   public void setEntryData(
     final int i,
-    final String date,
-    final String title,
-    final String text,
-    final int mood) {
-    list.addItem(date + ": " + title, date);
+    final String aDate,
+    final String aTitle,
+    final String aText) {
+    list.addItem(aDate + ": " + aTitle, aDate);
   }
 }

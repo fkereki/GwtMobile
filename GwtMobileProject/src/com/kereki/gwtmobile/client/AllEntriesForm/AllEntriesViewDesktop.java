@@ -116,15 +116,14 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   @Override
   public void setEntryData(
     final int i,
-    final String date,
-    final String title,
-    final String text,
-    final int mood) {
-    if (text.length() < 50) {
-      list.addItem(date + ": (" + title + ") " + text, date);
+    final String aDate,
+    final String aTitle,
+    final String aText) {
+    if (aText.length() < 50) {
+      list.addItem(aDate + ": (" + aTitle + ") " + aText, aDate);
     }
     else {
-      list.addItem(date + ": (" + title + ") " + text.substring(0, 50) + "...", date);
+      list.addItem(aDate + ": (" + aTitle + ") " + aText.substring(0, 50) + "...", aDate);
     }
   }
 }

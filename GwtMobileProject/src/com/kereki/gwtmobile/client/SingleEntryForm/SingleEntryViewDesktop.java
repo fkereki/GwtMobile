@@ -196,38 +196,38 @@ public class SingleEntryViewDesktop extends View implements SingleEntryDisplay {
   }
 
   @Override
-  public void setCancelCallback(final SimpleCallback<Object> callback) {
-    onCancelClickCallback= callback;
+  public void setCancelCallback(final SimpleCallback<Object> aCallback) {
+    onCancelClickCallback= aCallback;
   }
 
   @Override
-  public void setEntryDate(final String date) {
-    dateTextbox.setValue(date);
+  public void setEntryDate(final String aDate) {
+    dateTextbox.setValue(aDate);
   }
 
   @Override
-  public void setEntryText(final String text) {
-    textTextarea.setValue(text);
+  public void setEntryText(final String aText) {
+    textTextarea.setValue(aText);
   }
 
   @Override
-  public void setEntryTitle(final String title) {
-    titleTextbox.setValue(title);
+  public void setEntryTitle(final String aTitle) {
+    titleTextbox.setValue(aTitle);
   }
 
   @Override
-  public void setMood(final int mood) {
-    moodPicker.setSelectedIndex(mood);
-    setMoodIcon(mood);
+  public void setMood(final int aMood) {
+    moodPicker.setSelectedIndex(aMood);
+    setMoodIcon(aMood);
   }
 
-  private void setMoodIcon(final int mood) {
-    moodIcon.setUrl("mood-fox-icons/" + mood + ".gif");
+  private void setMoodIcon(final int aMood) {
+    moodIcon.setUrl("mood-fox-icons/" + aMood + ".gif");
   }
 
   @Override
-  public void setSaveCallback(final SimpleCallback<Object> callback) {
-    onSaveClickCallback= callback;
+  public void setSaveCallback(final SimpleCallback<Object> aCallback) {
+    onSaveClickCallback= aCallback;
   }
 
   @Override

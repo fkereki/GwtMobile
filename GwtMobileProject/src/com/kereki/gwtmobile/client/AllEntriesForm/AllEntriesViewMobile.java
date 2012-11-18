@@ -118,8 +118,7 @@ public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
     final int i,
     final String date,
     final String title,
-    final String text,
-    final int mood) {
+    final String text) {
     /*
      * Let's show just the date part; space is at a premium
      */

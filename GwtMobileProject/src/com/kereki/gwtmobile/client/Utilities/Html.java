@@ -7,8 +7,8 @@ public class Html {
    * www.php.net/manual/en/function.htmlspecialchars.php) so the output XML
    * won't include wrong characters.
    */
-  public static String htmlSpecialChars(final String inp) {
-    String aux= inp;
+  public static String htmlSpecialChars(final String aString) {
+    String aux= aString;
     aux= aux.replace("&", "&amp;");
     aux= aux.replace("\"", "&quot;");
     aux= aux.replace("'", "&apos;");

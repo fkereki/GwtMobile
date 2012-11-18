@@ -24,7 +24,7 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
         public void goBack(final ListOfEntries result) {
           for (int i= 0; i < result.size(); i++) {
             allEntriesDisplay.setEntryData(i, result.get(i).date, result.get(i).title,
-              result.get(i).text, result.get(i).mood);
+              result.get(i).text);
           }
         }
       });
