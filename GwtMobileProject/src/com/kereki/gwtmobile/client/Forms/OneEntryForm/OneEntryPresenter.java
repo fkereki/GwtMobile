@@ -1,4 +1,4 @@
-package com.kereki.gwtmobile.client.Forms.SingleEntryForm;
+package com.kereki.gwtmobile.client.Forms.OneEntryForm;
 
 import java.util.Date;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -10,16 +10,16 @@ import com.kereki.gwtmobile.client.Utilities.KeyValueMap;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 import com.kereki.gwtmobile.shared.DiaryEntry;
 
-public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
-  public static String PLACE= "singleentry";
+public class OneEntryPresenter extends Presenter<OneEntryDisplay> {
+  public static String PLACE= "oneentry";
 
 
-  public SingleEntryPresenter(
+  public OneEntryPresenter(
     final String params,
-    final SingleEntryDisplay singleEntryDisplay,
+    final OneEntryDisplay oneEntryDisplay,
     final Environment environment) {
 
-    super(params, singleEntryDisplay, environment);
+    super(params, oneEntryDisplay, environment);
 
     String dateToEdit= "";
     if (!params.isEmpty()) {
@@ -28,28 +28,28 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
 
     if ((dateToEdit != null) && !dateToEdit.isEmpty()) {
       final DiaryEntry toEdit= environment.getModel().getSingleEntry(dateToEdit);
-      singleEntryDisplay.setViewTitle("Edit Entry");
-      singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
-      singleEntryDisplay.setEntryTitle(toEdit.title);
-      singleEntryDisplay.setEntryText(toEdit.text);
-      singleEntryDisplay.setMood(toEdit.mood);
+      oneEntryDisplay.setViewTitle("Edit Entry");
+      oneEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
+      oneEntryDisplay.setEntryTitle(toEdit.title);
+      oneEntryDisplay.setEntryText(toEdit.text);
+      oneEntryDisplay.setMood(toEdit.mood);
     }
     else {
       dateToEdit= DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-      singleEntryDisplay.setViewTitle("Add Entry");
-      singleEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
-      singleEntryDisplay.setEntryTitle("");
-      singleEntryDisplay.setEntryText("");
-      singleEntryDisplay.setMood(0);
+      oneEntryDisplay.setViewTitle("Add Entry");
+      oneEntryDisplay.setEntryDate(Html.htmlSpecialChars(dateToEdit));
+      oneEntryDisplay.setEntryTitle("");
+      oneEntryDisplay.setEntryText("");
+      oneEntryDisplay.setMood(0);
     }
 
-    singleEntryDisplay.setSaveCallback(new SimpleCallback<Object>() {
+    oneEntryDisplay.setSaveCallback(new SimpleCallback<Object>() {
       @Override
       public void goBack(final Object result) {
         environment.getModel().putEntry(
-          new DiaryEntry(environment.getUser(), singleEntryDisplay.getEntryDate(),
-            singleEntryDisplay.getEntryTitle(), singleEntryDisplay.getEntryText(),
-            singleEntryDisplay.getMood()), new SimpleCallback<Void>() {
+          new DiaryEntry(environment.getUser(), oneEntryDisplay.getEntryDate(),
+            oneEntryDisplay.getEntryTitle(), oneEntryDisplay.getEntryText(),
+            oneEntryDisplay.getMood()), new SimpleCallback<Void>() {
 
             @Override
             public void goBack(final Void result) {
@@ -59,7 +59,7 @@ public class SingleEntryPresenter extends Presenter<SingleEntryDisplay> {
       }
     });
 
-    singleEntryDisplay.setCancelCallback(new SimpleCallback<Object>() {
+    oneEntryDisplay.setCancelCallback(new SimpleCallback<Object>() {
       @Override
       public void goBack(final Object result) {
         environment.launch(AllEntriesPresenter.PLACE);

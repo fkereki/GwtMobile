@@ -1,6 +1,6 @@
 package com.kereki.gwtmobile.client.Forms.AllEntriesForm;
 
-import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryPresenter;
+import com.kereki.gwtmobile.client.Forms.OneEntryForm.OneEntryPresenter;
 import com.kereki.gwtmobile.client.MVP.Environment;
 import com.kereki.gwtmobile.client.MVP.Presenter;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
@@ -32,7 +32,7 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
     allEntriesDisplay.setAddCallback(new SimpleCallback<Object>() {
       @Override
       public void goBack(final Object result) {
-        environment.launch(SingleEntryPresenter.PLACE + "?date=");
+        environment.launch(OneEntryPresenter.PLACE + "?date=");
       }
     });
 
@@ -40,10 +40,10 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
       @Override
       public void goBack(final Object result) {
         if (allEntriesDisplay.getSelectedDate().isEmpty()) {
-          environment.launch(SingleEntryPresenter.PLACE + "?date=");
+          environment.launch(OneEntryPresenter.PLACE + "?date=");
         }
         else {
-          environment.launch(SingleEntryPresenter.PLACE + "?date="
+          environment.launch(OneEntryPresenter.PLACE + "?date="
             + allEntriesDisplay.getSelectedDate());
         }
       }

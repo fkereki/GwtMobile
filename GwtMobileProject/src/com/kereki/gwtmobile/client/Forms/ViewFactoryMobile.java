@@ -4,6 +4,8 @@ import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesDisplay;
 import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesViewMobile;
 import com.kereki.gwtmobile.client.Forms.LoginForm.LoginDisplay;
 import com.kereki.gwtmobile.client.Forms.LoginForm.LoginView;
+import com.kereki.gwtmobile.client.Forms.OneEntryForm.OneEntryDisplay;
+import com.kereki.gwtmobile.client.Forms.OneEntryForm.OneEntryViewMobile;
 import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryDisplay;
 import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryViewMobile;
 
@@ -22,5 +24,10 @@ public class ViewFactoryMobile implements ViewFactory {
   @Override
   public SingleEntryDisplay getSingleEntryView() {
     return new SingleEntryViewMobile();
+  }
+
+  @Override
+  public OneEntryDisplay getOneEntryView() {
+    return new OneEntryViewMobile();
   }
 }

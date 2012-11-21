@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.kereki.gwtmobile.client.Forms.ViewFactory;
 import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesPresenter;
 import com.kereki.gwtmobile.client.Forms.LoginForm.LoginPresenter;
+import com.kereki.gwtmobile.client.Forms.OneEntryForm.OneEntryPresenter;
 import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryPresenter;
 
 public class Environment {
@@ -55,6 +56,23 @@ public class Environment {
         self);
       RootPanel.get().clear();
       RootPanel.get().add(loginPresenter.getDisplay().asWidget());
+
+    }
+    else if (token.equals(OneEntryPresenter.PLACE)) {
+      GWT.runAsync(new RunAsyncCallback() {
+        @Override
+        public void onFailure(final Throwable reason) {
+          showAlert("Cannot show the 'one entry' form...");
+        }
+
+        @Override
+        public void onSuccess() {
+          final OneEntryPresenter oneEntryPresenter= new OneEntryPresenter(args2,
+            viewFactory.getOneEntryView(), self);
+          RootPanel.get().clear();
+          RootPanel.get().add(oneEntryPresenter.getDisplay().asWidget());
+        }
+      });
 
     }
     else if (token.equals(AllEntriesPresenter.PLACE)) {

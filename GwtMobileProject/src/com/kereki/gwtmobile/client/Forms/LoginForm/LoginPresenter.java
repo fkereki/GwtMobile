@@ -29,7 +29,6 @@ public class LoginPresenter extends Presenter<LoginDisplay> {
           @Override
           public void goBack(final Boolean result) {
             if (result) {
-              environment.showAlert("User " + user + " accepted.");
               environment.setUser(user);
               environment.launch(AllEntriesPresenter.PLACE);
             }

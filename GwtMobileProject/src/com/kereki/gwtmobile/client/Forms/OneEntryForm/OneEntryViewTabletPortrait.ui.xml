@@ -1,0 +1,24 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .important {
+        	font-weight: bold;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <h2>One entry - Tablet Portrait view</h2>
+        <g:Label text="Date:" />
+        <g:TextBox ui:field='dateTextbox' width='100%'/>
+        <g:Label text="Title:" />
+        <g:TextBox ui:field='titleTextbox' width='100%'/>
+        <g:Label text="Text:" />
+        <g:TextArea ui:field='textTextarea' width='100%'/>
+        <g:Label text="Mood:" />
+        <g:ListBox ui:field='moodPicker' width='100%'/>
+        <br/>
+        <br/>
+        <g:Button text='Save' ui:field='saveButton' width='100%'/>
+        <g:Button text='Cancel' ui:field='cancelButton' width='100%'/>
+    </g:HTMLPanel>
+</ui:UiBinder> 

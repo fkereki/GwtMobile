@@ -14,25 +14,25 @@
     <source path="client" />
     <source path="shared" />
 
-    <set-property name="formfactor" value="desktop" >
-        <none>
-            <when-property-is name="user.agent" value="safari" />
-            <when-property-is name="user.agent" value="gecko1_8" />
-            </none>
-    </set-property>
+<set-property name="formfactor" value="desktop" >
+    <none>
+        <when-property-is name="user.agent" value="safari" />
+        <when-property-is name="user.agent" value="gecko1_8" />
+        </none>
+</set-property>
     
-    <replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryDesktop" >
-        <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
-        <when-property-is name="formfactor" value="desktop" />
-    </replace-with>
+<replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryDesktop" >
+    <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
+    <when-property-is name="formfactor" value="desktop" />
+</replace-with>
 
-    <replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryMobile" >
-        <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
-        <when-property-is name="formfactor" value="mobile" />
-    </replace-with>
+<replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryMobile" >
+    <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
+    <when-property-is name="formfactor" value="mobile" />
+</replace-with>
 
-    <replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryTablet" >
-        <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
-        <when-property-is name="formfactor" value="tablet" />
-    </replace-with>
+<replace-with class="com.kereki.gwtmobile.client.Forms.ViewFactoryTablet" >
+    <when-type-is class="com.kereki.gwtmobile.client.Forms.ViewFactory" />
+    <when-property-is name="formfactor" value="tablet" />
+</replace-with>
 </module>

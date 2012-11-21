@@ -5,7 +5,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.storage.client.StorageMap;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.kereki.gwtmobile.client.DiaryService;
 import com.kereki.gwtmobile.client.DiaryServiceAsync;
@@ -108,8 +107,6 @@ public class Model {
   }
 
   public void putEntry(final DiaryEntry myEntry, final AsyncCallback<Void> callback) {
-
-    Window.alert(myEntry.date + " " + myEntry.user);
 
     diaryService.putEntry(myEntry, new AsyncCallback<Void>() {
 

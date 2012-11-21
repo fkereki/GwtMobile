@@ -1,9 +1,9 @@
-package com.kereki.gwtmobile.client.Forms.SingleEntryForm;
+package com.kereki.gwtmobile.client.Forms.OneEntryForm;
 
 import com.kereki.gwtmobile.client.MVP.Display;
 import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
-public interface SingleEntryDisplay extends Display {
+public interface OneEntryDisplay extends Display {
 
   String getEntryDate();
 
