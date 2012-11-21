@@ -9,7 +9,6 @@ import com.kereki.gwtmobile.client.Forms.ViewFactory;
 import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesPresenter;
 import com.kereki.gwtmobile.client.Forms.LoginForm.LoginPresenter;
 import com.kereki.gwtmobile.client.Forms.OneEntryForm.OneEntryPresenter;
-import com.kereki.gwtmobile.client.Forms.SingleEntryForm.SingleEntryPresenter;
 
 public class Environment {
   final Environment self= this;
@@ -88,23 +87,6 @@ public class Environment {
             viewFactory.getAllEntriesView(), self);
           RootPanel.get().clear();
           RootPanel.get().add(allEntriesPresenter.getDisplay().asWidget());
-        }
-      });
-
-    }
-    else if (token.equals(SingleEntryPresenter.PLACE)) {
-      GWT.runAsync(new RunAsyncCallback() {
-        @Override
-        public void onFailure(final Throwable reason) {
-          showAlert("Cannot show the 'single entry' form...");
-        }
-
-        @Override
-        public void onSuccess() {
-          final SingleEntryPresenter singleEntryPresenter= new SingleEntryPresenter(
-            args2, viewFactory.getSingleEntryView(), self);
-          RootPanel.get().clear();
-          RootPanel.get().add(singleEntryPresenter.getDisplay().asWidget());
         }
       });
 
