@@ -13,8 +13,11 @@ public class DiaryEntry implements Serializable {
   public int mood;
 
 
+
   public DiaryEntry() {
   }
+
+
 
   public DiaryEntry(
     final String myUser,

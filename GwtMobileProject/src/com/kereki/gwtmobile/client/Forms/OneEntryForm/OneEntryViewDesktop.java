@@ -26,8 +26,7 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
   }
 
 
-  private static ViewUiBinder uiBinder= GWT
-    .create(ViewUiBinder.class);
+  private static ViewUiBinder uiBinder= GWT.create(ViewUiBinder.class);
 
   @UiField
   TextBox dateTextbox;
@@ -45,15 +44,20 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
   Button cancelButton;
 
 
+
   @UiHandler("cancelButton")
   void handleCancelClick(final ClickEvent event) {
     onCancelClickCallback.goBack();
   }
 
+
+
   @UiHandler("saveButton")
   void handleSaveClick(final ClickEvent event) {
     onSaveClickCallback.goBack();
   }
+
+
 
   @UiHandler("moodPicker")
   void handleMoodChange(final ChangeEvent event) {
@@ -63,6 +67,7 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
 
   SimpleCallback<Object> onSaveClickCallback;
   SimpleCallback<Object> onCancelClickCallback;
+
 
 
   public OneEntryViewDesktop() {
@@ -98,30 +103,41 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public String getEntryDate() {
     return dateTextbox.getValue();
   }
+
+
 
   @Override
   public String getEntryText() {
     return textTextarea.getValue();
   }
 
+
+
   @Override
   public String getEntryTitle() {
     return titleTextbox.getValue();
   }
+
+
 
   @Override
   public int getMood() {
     return moodPicker.getSelectedIndex();
   }
 
+
+
   @Override
   public void redraw() {
     // nothing to do; always the same view...
   }
+
+
 
   @Override
   public void setCancelCallback(final SimpleCallback<Object> aCallback) {
@@ -129,10 +145,13 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public void setEntryDate(final String aDate) {
     dateTextbox.setValue(aDate);
   }
+
+
 
   @Override
   public void setEntryText(final String aText) {
@@ -140,10 +159,13 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public void setEntryTitle(final String aTitle) {
     titleTextbox.setValue(aTitle);
   }
+
+
 
   @Override
   public void setMood(final int aMood) {
@@ -151,14 +173,20 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
     setMoodIcon(aMood);
   }
 
+
+
   private void setMoodIcon(final int aMood) {
     moodIcon.setUrl("mood-fox-icons/" + aMood + ".gif");
   }
+
+
 
   @Override
   public void setSaveCallback(final SimpleCallback<Object> aCallback) {
     onSaveClickCallback= aCallback;
   }
+
+
 
   @Override
   public void setViewTitle(final String aTitle) {

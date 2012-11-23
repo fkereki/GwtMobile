@@ -20,6 +20,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
   Environment environment;
 
 
+
   @Override
   public void onModuleLoad() {
     final Model model= new Model();
@@ -43,6 +44,7 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
       Status wasOnline= Status.UNTESTED;
 
 
+
       @Override
       public void onFailure(final Throwable caught) {
         if (wasOnline != Status.OFFLINE) {
@@ -50,6 +52,8 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
           wasOnline= Status.OFFLINE;
         }
       }
+
+
 
       @Override
       public void onSuccess(final Void result) {
@@ -61,6 +65,8 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
       }
     });
   }
+
+
 
   @Override
   public void onValueChange(final ValueChangeEvent<String> event) {

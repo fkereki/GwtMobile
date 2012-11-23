@@ -9,8 +9,11 @@ abstract public class Presenter<D> {
   private KeyValueMap kvm;
 
 
+
   public Presenter() {
   }
+
+
 
   public Presenter(
     final String someParams,
@@ -23,13 +26,19 @@ abstract public class Presenter<D> {
     kvm= new KeyValueMap(params);
   }
 
+
+
   public D getDisplay() {
     return display;
   }
 
+
+
   public Environment getEnvironment() {
     return environment;
   }
+
+
 
   public KeyValueMap getKvm() {
     return kvm;

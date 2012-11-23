@@ -25,10 +25,12 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public String getEntryText() {
     return currentView.getEntryText();
   }
+
 
 
   @Override
@@ -37,10 +39,12 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public int getMood() {
     return currentView.getMood();
   }
+
 
 
   @Override
@@ -57,10 +61,12 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public void setEntryText(final String aText) {
     currentView.setEntryText(aText);
   }
+
 
 
   @Override
@@ -69,10 +75,12 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
   }
 
 
+
   @Override
   public void setMood(final int aMood) {
     currentView.setMood(aMood);
   }
+
 
 
   @Override
@@ -88,6 +96,8 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
     // TODO Auto-generated method stub
 
   }
+
+
 
   @Override
   public void redraw() {
@@ -106,6 +116,7 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
       myself.add((Composite) currentView);
     }
   }
+
 
 
   public OneEntryViewMobile() {

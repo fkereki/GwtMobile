@@ -29,6 +29,7 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
   SimpleCallback<Object> onEditClickCallback;
 
 
+
   public AllEntriesViewDesktop() {
     addButton.addClickHandler(new ClickHandler() {
       @Override
@@ -74,6 +75,8 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
     initWidget(vp);
   }
 
+
+
   @Override
   public String getSelectedDate() {
     if (list.getSelectedIndex() == -1) {
@@ -83,6 +86,8 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
       return list.getValue(list.getSelectedIndex());
     }
   }
+
+
 
   @Override
   public void redraw() {
@@ -103,15 +108,21 @@ public class AllEntriesViewDesktop extends View implements AllEntriesDisplay {
     }
   }
 
+
+
   @Override
   public void setAddCallback(final SimpleCallback<Object> callback) {
     onAddClickCallback= callback;
   }
 
+
+
   @Override
   public void setEditCallback(final SimpleCallback<Object> callback) {
     onEditClickCallback= callback;
   }
+
+
 
   @Override
   public void setEntryData(

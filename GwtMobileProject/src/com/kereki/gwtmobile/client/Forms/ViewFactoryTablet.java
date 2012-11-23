@@ -14,10 +14,14 @@ public class ViewFactoryTablet implements ViewFactory {
     return new AllEntriesViewTablet();
   }
 
+
+
   @Override
   public LoginDisplay getLoginView() {
     return new LoginView();
   }
+
+
 
   @Override
   public OneEntryDisplay getOneEntryView() {

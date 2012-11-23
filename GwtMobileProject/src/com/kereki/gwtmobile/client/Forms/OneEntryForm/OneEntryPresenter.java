@@ -14,6 +14,7 @@ public class OneEntryPresenter extends Presenter<OneEntryDisplay> {
   public static String PLACE= "oneentry";
 
 
+
   public OneEntryPresenter(
     final String params,
     final OneEntryDisplay oneEntryDisplay,

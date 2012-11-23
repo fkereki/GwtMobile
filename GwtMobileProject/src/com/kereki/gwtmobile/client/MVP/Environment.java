@@ -18,18 +18,25 @@ public class Environment {
   String currentUser= "";
 
 
+
   public Environment(final Model aModel, final ViewFactory aViewFactory) {
     model= aModel;
     viewFactory= aViewFactory;
   }
 
+
+
   public Model getModel() {
     return model;
   }
 
+
+
   public String getUser() {
     return currentUser;
   }
+
+
 
   public void launch(String token) {
     History.newItem(token, false);
@@ -73,6 +80,8 @@ public class Environment {
     }
   }
 
+
+
   public void prefetchImages() {
     /*
      * Preload mood images with Image.prefetch(...)
@@ -82,13 +91,19 @@ public class Environment {
     }
   }
 
+
+
   public void setUser(final String anUser) {
     currentUser= anUser;
   }
 
+
+
   public void showAlert(final String alertText) {
     Window.alert(alertText);
   }
+
+
 
   public void showAllEntries(final String args, final boolean forReal) {
     GWT.runAsync(new RunAsyncCallback() {
@@ -98,6 +113,8 @@ public class Environment {
           showAlert("Cannot get & show the 'all entries' form...");
         }
       }
+
+
 
       @Override
       public void onSuccess() {
@@ -111,6 +128,8 @@ public class Environment {
     });
   }
 
+
+
   public void showOneEntry(final String args, final boolean forReal) {
     GWT.runAsync(new RunAsyncCallback() {
       @Override
@@ -119,6 +138,8 @@ public class Environment {
           showAlert("Cannot show the 'one entry' form...");
         }
       }
+
+
 
       @Override
       public void onSuccess() {

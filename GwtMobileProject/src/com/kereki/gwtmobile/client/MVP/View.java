@@ -10,6 +10,8 @@ public abstract class View extends Composite {
     return this;
   }
 
+
+
   /**
    * Redraw/reposition objects after a window resize
    */

@@ -12,12 +12,15 @@ public class KeyValueMap extends HashMap<String, String> {
   private static final long serialVersionUID= 5225712868559413562L;
 
 
+
   /**
    * Standard constructor; produces an empty KeyValueMap.
    */
   public KeyValueMap() {
     this("");
   }
+
+
 
   /**
    * Create a KeyValueMap, and initialize it with the params string.
@@ -28,6 +31,8 @@ public class KeyValueMap extends HashMap<String, String> {
   public KeyValueMap(final String parameters) {
     initializeWithString(parameters);
   }
+
+
 
   /**
    * Initialize a KeyValueMap with a parameters URL-like string.
@@ -51,6 +56,8 @@ public class KeyValueMap extends HashMap<String, String> {
       }
     }
   }
+
+
 
   @Override
   public String toString() {

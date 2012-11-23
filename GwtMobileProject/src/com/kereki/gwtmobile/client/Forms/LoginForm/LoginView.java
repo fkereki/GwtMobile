@@ -28,6 +28,7 @@ public class LoginView extends View implements LoginDisplay {
   SimpleCallback<Object> onLoginClickCallback;
 
 
+
   public LoginView() {
     loginButton.addClickHandler(new ClickHandler() {
       @Override
@@ -54,6 +55,8 @@ public class LoginView extends View implements LoginDisplay {
     initWidget(vp);
   }
 
+
+
   @Override
   public void redraw() {
     ft.clear();
@@ -73,25 +76,35 @@ public class LoginView extends View implements LoginDisplay {
     }
   }
 
+
+
   @Override
   public String getUser() {
     return userTextbox.getValue();
   }
+
+
 
   @Override
   public String getPassword() {
     return passwordTextbox.getValue();
   }
 
+
+
   @Override
   public void SetLoginCallback(final SimpleCallback<Object> callback) {
     onLoginClickCallback= callback;
   }
 
+
+
   @Override
   public void setUser(final String anUser) {
     userTextbox.setValue(anUser);
   }
+
+
 
   @Override
   public void setPassword(final String aPassword) {

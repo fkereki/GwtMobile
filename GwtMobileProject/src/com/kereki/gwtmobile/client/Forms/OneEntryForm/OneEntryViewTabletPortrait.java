@@ -20,13 +20,11 @@ import com.kereki.gwtmobile.client.Utilities.SimpleCallback;
 
 public class OneEntryViewTabletPortrait extends View implements OneEntryDisplay {
 
-  interface ViewUiBinder extends
-    UiBinder<Widget, OneEntryViewTabletPortrait> {
+  interface ViewUiBinder extends UiBinder<Widget, OneEntryViewTabletPortrait> {
   }
 
 
-  private static ViewUiBinder uiBinder= GWT
-    .create(ViewUiBinder.class);
+  private static ViewUiBinder uiBinder= GWT.create(ViewUiBinder.class);
 
   @UiField
   TextBox dateTextbox;
@@ -42,10 +40,13 @@ public class OneEntryViewTabletPortrait extends View implements OneEntryDisplay 
   Button cancelButton;
 
 
+
   @UiHandler("cancelButton")
   void handleCancelClick(final ClickEvent event) {
     onCancelClickCallback.goBack();
   }
+
+
 
   @UiHandler("saveButton")
   void handleSaveClick(final ClickEvent event) {
@@ -55,6 +56,7 @@ public class OneEntryViewTabletPortrait extends View implements OneEntryDisplay 
 
   SimpleCallback<Object> onSaveClickCallback;
   SimpleCallback<Object> onCancelClickCallback;
+
 
 
   public OneEntryViewTabletPortrait() {
@@ -90,30 +92,41 @@ public class OneEntryViewTabletPortrait extends View implements OneEntryDisplay 
   }
 
 
+
   @Override
   public String getEntryDate() {
     return dateTextbox.getValue();
   }
+
+
 
   @Override
   public String getEntryText() {
     return textTextarea.getValue();
   }
 
+
+
   @Override
   public String getEntryTitle() {
     return titleTextbox.getValue();
   }
+
+
 
   @Override
   public int getMood() {
     return moodPicker.getSelectedIndex();
   }
 
+
+
   @Override
   public void redraw() {
     // nothing to do; always the same view...
   }
+
+
 
   @Override
   public void setCancelCallback(final SimpleCallback<Object> aCallback) {
@@ -121,10 +134,13 @@ public class OneEntryViewTabletPortrait extends View implements OneEntryDisplay 
   }
 
 
+
   @Override
   public void setEntryDate(final String aDate) {
     dateTextbox.setValue(aDate);
   }
+
+
 
   @Override
   public void setEntryText(final String aText) {
@@ -132,20 +148,27 @@ public class OneEntryViewTabletPortrait extends View implements OneEntryDisplay 
   }
 
 
+
   @Override
   public void setEntryTitle(final String aTitle) {
     titleTextbox.setValue(aTitle);
   }
+
+
 
   @Override
   public void setMood(final int aMood) {
     moodPicker.setSelectedIndex(aMood);
   }
 
+
+
   @Override
   public void setSaveCallback(final SimpleCallback<Object> aCallback) {
     onSaveClickCallback= aCallback;
   }
+
+
 
   @Override
   public void setViewTitle(final String aTitle) {

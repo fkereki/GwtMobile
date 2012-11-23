@@ -8,7 +8,11 @@ public interface ViewFactory {
 
   public AllEntriesDisplay getAllEntriesView();
 
+
+
   public LoginDisplay getLoginView();
+
+
 
   public OneEntryDisplay getOneEntryView();
 }

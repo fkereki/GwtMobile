@@ -9,6 +9,7 @@ public class LoginPresenter extends Presenter<LoginDisplay> {
   public static String PLACE= "login";
 
 
+
   public LoginPresenter(
     final String params,
     final LoginDisplay loginDisplay,

@@ -18,15 +18,20 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
   private Connection conn= null;
 
 
+
   private void connectToDatabase() throws Exception {
     DriverManager.registerDriver(new com.mysql.jdbc.Driver());
     Class.forName("com.mysql.jdbc.Driver");
     conn= DriverManager.getConnection(jdbc_url, mysql_user, mysql_password);
   }
 
+
+
   private void disconnectFromDatabase() throws Exception {
     conn.close();
   }
+
+
 
   @Override
   public ListOfEntries getAllEntries(final String user) throws RuntimeException {
@@ -59,6 +64,8 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
     return myList;
   }
 
+
+
   @Override
   public boolean login(final String user, final String password) {
     boolean result= false;
@@ -82,10 +89,13 @@ public class DiaryServiceImpl extends RemoteServiceServlet implements DiaryServi
     return result;
   }
 
+
+
   @Override
   public String ping(final String pong) {
     return pong;
   }
+
 
 
   @Override

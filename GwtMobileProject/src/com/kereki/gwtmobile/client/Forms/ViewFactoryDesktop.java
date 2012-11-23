@@ -14,10 +14,14 @@ public class ViewFactoryDesktop implements ViewFactory {
     return new AllEntriesViewDesktop();
   }
 
+
+
   @Override
   public LoginDisplay getLoginView() {
     return new LoginView();
   }
+
+
 
   @Override
   public OneEntryDisplay getOneEntryView() {

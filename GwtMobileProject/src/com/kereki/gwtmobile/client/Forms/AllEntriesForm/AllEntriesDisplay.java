@@ -7,9 +7,15 @@ public interface AllEntriesDisplay extends Display {
 
   String getSelectedDate();
 
+
+
   void setAddCallback(final SimpleCallback<Object> callback);
 
+
+
   void setEditCallback(final SimpleCallback<Object> callback);
+
+
 
   void setEntryData(
     final int i,

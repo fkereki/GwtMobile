@@ -12,9 +12,15 @@ import com.kereki.gwtmobile.shared.ListOfEntries;
 public interface DiaryService extends RemoteService {
   ListOfEntries getAllEntries(final String user);
 
+
+
   boolean login(final String user, final String password);
 
+
+
   String ping(final String pong);
+
+
 
   void putEntry(final DiaryEntry myEntry) throws RuntimeException;
 }

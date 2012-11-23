@@ -22,12 +22,15 @@ public class Model {
   private final String PREFIX_PENDING= "to.add.";
 
 
+
   public Model() {
     localStorage= Storage.getLocalStorageIfSupported();
     if (localStorage != null) {
       cache= new StorageMap(localStorage);
     }
   }
+
+
 
   public DiaryEntry getSingleEntry(final String date) {
     for (int i= 0; i < myList.size(); i++) {
@@ -37,6 +40,8 @@ public class Model {
     }
     return null;
   }
+
+
 
   public void getListOfEntries(
     final String user,
@@ -71,6 +76,8 @@ public class Model {
         }
       }
 
+
+
       @Override
       public void onSuccess(final ListOfEntries result) {
         /**
@@ -98,6 +105,7 @@ public class Model {
   }
 
 
+
   public void login(
     final String user,
     final String password,
@@ -105,6 +113,8 @@ public class Model {
 
     diaryService.login(user, password, callback);
   }
+
+
 
   public void putEntry(final DiaryEntry myEntry, final AsyncCallback<Void> callback) {
 
@@ -125,6 +135,8 @@ public class Model {
           callback.onFailure(new RuntimeException("Couldn't put entry..."));
         }
       }
+
+
 
       @Override
       public void onSuccess(final Void result) {
@@ -161,6 +173,8 @@ public class Model {
     }
   }
 
+
+
   public void testConnection(final int everySeconds, final AsyncCallback<Void> callback) {
 
     Scheduler.get().scheduleFixedDelay(new Scheduler.RepeatingCommand() {
@@ -174,6 +188,8 @@ public class Model {
           public void onFailure(final Throwable caught) {
             callback.onFailure(null);
           }
+
+
 
           @Override
           public void onSuccess(final String result) {

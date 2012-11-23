@@ -11,6 +11,7 @@ public class AllEntriesPresenter extends Presenter<AllEntriesDisplay> {
   public static String PLACE= "allentries";
 
 
+
   public AllEntriesPresenter(
     final String params,
     final AllEntriesDisplay allEntriesDisplay,

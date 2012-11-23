@@ -14,10 +14,14 @@ public class ViewFactoryMobile implements ViewFactory {
     return new AllEntriesViewMobile();
   }
 
+
+
   @Override
   public LoginDisplay getLoginView() {
     return new LoginView();
   }
+
+
 
   @Override
   public OneEntryDisplay getOneEntryView() {
