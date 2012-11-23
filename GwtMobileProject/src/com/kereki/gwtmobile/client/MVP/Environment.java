@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.kereki.gwtmobile.client.Forms.ViewFactory;
 import com.kereki.gwtmobile.client.Forms.AllEntriesForm.AllEntriesPresenter;
@@ -69,6 +70,15 @@ public class Environment {
     else {
       showAlert("Unrecognized token=" + token);
       token= "";
+    }
+  }
+
+  public void prefetchImages() {
+    /*
+     * Preload mood images with Image.prefetch(...)
+     */
+    for (int mood= 0; mood < 20; mood++) {
+      Image.prefetch("mood-fox-icons/" + mood + ".gif");
     }
   }
 
