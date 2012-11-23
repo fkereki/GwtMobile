@@ -44,7 +44,6 @@ public class Environment {
       args= token.substring(question + 1);
       token= token.substring(0, question);
     }
-    final String args2= args;
 
     if (token.isEmpty()) {
       // no need to do anything...
@@ -55,40 +54,16 @@ public class Environment {
         self);
       RootPanel.get().clear();
       RootPanel.get().add(loginPresenter.getDisplay().asWidget());
+      showAllEntries("", false); // prefetch the "all entries" form
 
     }
     else if (token.equals(OneEntryPresenter.PLACE)) {
-      GWT.runAsync(new RunAsyncCallback() {
-        @Override
-        public void onFailure(final Throwable reason) {
-          showAlert("Cannot show the 'one entry' form...");
-        }
-
-        @Override
-        public void onSuccess() {
-          final OneEntryPresenter oneEntryPresenter= new OneEntryPresenter(args2,
-            viewFactory.getOneEntryView(), self);
-          RootPanel.get().clear();
-          RootPanel.get().add(oneEntryPresenter.getDisplay().asWidget());
-        }
-      });
+      showOneEntry(args, true);
 
     }
     else if (token.equals(AllEntriesPresenter.PLACE)) {
-      GWT.runAsync(new RunAsyncCallback() {
-        @Override
-        public void onFailure(final Throwable reason) {
-          showAlert("Cannot show the 'all entries' form...");
-        }
-
-        @Override
-        public void onSuccess() {
-          final AllEntriesPresenter allEntriesPresenter= new AllEntriesPresenter(args2,
-            viewFactory.getAllEntriesView(), self);
-          RootPanel.get().clear();
-          RootPanel.get().add(allEntriesPresenter.getDisplay().asWidget());
-        }
-      });
+      showAllEntries(args, true);
+      showOneEntry("", false); // prefetch the "one entry" form
 
     }
     else {
@@ -103,5 +78,47 @@ public class Environment {
 
   public void showAlert(final String alertText) {
     Window.alert(alertText);
+  }
+
+  public void showAllEntries(final String args, final boolean forReal) {
+    GWT.runAsync(new RunAsyncCallback() {
+      @Override
+      public void onFailure(final Throwable reason) {
+        if (forReal) {
+          showAlert("Cannot get & show the 'all entries' form...");
+        }
+      }
+
+      @Override
+      public void onSuccess() {
+        if (forReal) {
+          final AllEntriesPresenter allEntriesPresenter= new AllEntriesPresenter(args,
+            viewFactory.getAllEntriesView(), self);
+          RootPanel.get().clear();
+          RootPanel.get().add(allEntriesPresenter.getDisplay().asWidget());
+        }
+      }
+    });
+  }
+
+  public void showOneEntry(final String args, final boolean forReal) {
+    GWT.runAsync(new RunAsyncCallback() {
+      @Override
+      public void onFailure(final Throwable reason) {
+        if (forReal) {
+          showAlert("Cannot show the 'one entry' form...");
+        }
+      }
+
+      @Override
+      public void onSuccess() {
+        if (forReal) {
+          final OneEntryPresenter oneEntryPresenter= new OneEntryPresenter(args,
+            viewFactory.getOneEntryView(), self);
+          RootPanel.get().clear();
+          RootPanel.get().add(oneEntryPresenter.getDisplay().asWidget());
+        }
+      }
+    });
   }
 }

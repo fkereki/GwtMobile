@@ -39,6 +39,5 @@ public class LoginPresenter extends Presenter<LoginDisplay> {
         });
       }
     });
-
   }
 }

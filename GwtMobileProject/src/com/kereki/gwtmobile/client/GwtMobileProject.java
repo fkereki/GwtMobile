@@ -7,6 +7,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Image;
 import com.kereki.gwtmobile.client.Forms.ViewFactory;
 import com.kereki.gwtmobile.client.Forms.LoginForm.LoginPresenter;
 import com.kereki.gwtmobile.client.MVP.Environment;
@@ -30,6 +31,13 @@ public class GwtMobileProject implements EntryPoint, ValueChangeHandler<String> 
     diaryResources.css().ensureInjected();
     environment= new Environment(model, viewFactory);
     environment.launch(LoginPresenter.PLACE);
+
+    /*
+     * Preload mood images with Image.prefetch(...)
+     */
+    for (int mood= 0; mood < 20; mood++) {
+      Image.prefetch("mood-fox-icons/" + mood + ".gif");
+    }
 
     /*
      * Set up a connectivity test every 5 seconds. If connection was down, and
