@@ -14,12 +14,14 @@ import com.kereki.gwtmobile.shared.ListOfEntries;
 
 public class Model {
   private final DiaryServiceAsync diaryService= GWT.create(DiaryService.class);
-  private Storage localStorage= null;
-  private StorageMap cache= null;
   private final ListOfEntries myList= new ListOfEntries();
-  private final String SEPARATOR= "~~~";
-  private final String PREFIX= "entry.";
-  private final String PREFIX_PENDING= "to.add.";
+
+  private final Storage localStorage;
+  private final StorageMap cache;
+
+  private static final String SEPARATOR= "~~~";
+  private static final String ENTRY_PREFIX= "entry.";
+  private static final String PENDING_PREFIX= "to.add.";
 
 
 
@@ -27,6 +29,9 @@ public class Model {
     localStorage= Storage.getLocalStorageIfSupported();
     if (localStorage != null) {
       cache= new StorageMap(localStorage);
+    }
+    else {
+      cache= null;
     }
   }
 
@@ -57,11 +62,11 @@ public class Model {
          */
         myList.clear();
 
-        if (localStorage != null) {
+        if (cache != null) {
           Object[] cacheKeys= cache.keySet().toArray();
           for (Object cacheKey : cacheKeys) {
-            if (((String) cacheKey).startsWith(PREFIX)) {
-              String date= ((String) cacheKey).substring(PREFIX.length());
+            if (((String) cacheKey).startsWith(ENTRY_PREFIX)) {
+              String date= ((String) cacheKey).substring(ENTRY_PREFIX.length());
               String[] parts= cache.get(cacheKey).split(SEPARATOR);
               if (parts[0].equals(user)) {
                 myList.add(new DiaryEntry(parts[0], date, parts[1], parts[2], Integer
@@ -87,10 +92,10 @@ public class Model {
 
         myList.clear();
 
-        if (localStorage != null) {
+        if (cache != null) {
           for (int i= 0; i < result.size(); i++) {
             cache.put(
-              PREFIX + result.get(i).date,
+              ENTRY_PREFIX + result.get(i).date,
               result.get(i).user + SEPARATOR + result.get(i).title + SEPARATOR
                 + result.get(i).text + SEPARATOR + result.get(i).mood);
 
@@ -125,10 +130,10 @@ public class Model {
         /**
          * On failure, add the entry to the cache and mark it as pending
          */
-        if (localStorage != null) {
-          cache.put(PREFIX + myEntry.date, myEntry.user + SEPARATOR + myEntry.title
+        if (cache != null) {
+          cache.put(ENTRY_PREFIX + myEntry.date, myEntry.user + SEPARATOR + myEntry.title
             + SEPARATOR + myEntry.text + SEPARATOR + myEntry.mood);
-          cache.put(PREFIX_PENDING + myEntry.date, myEntry.date);
+          cache.put(PENDING_PREFIX + myEntry.date, myEntry.date);
           callback.onSuccess(null);
         }
         else {
@@ -140,8 +145,8 @@ public class Model {
 
       @Override
       public void onSuccess(final Void result) {
-        if (localStorage != null) {
-          cache.put(PREFIX + myEntry.date, myEntry.user + SEPARATOR + myEntry.title
+        if (cache != null) {
+          cache.put(ENTRY_PREFIX + myEntry.date, myEntry.user + SEPARATOR + myEntry.title
             + SEPARATOR + myEntry.text + SEPARATOR + myEntry.mood);
         }
         callback.onSuccess(null);
@@ -153,12 +158,12 @@ public class Model {
 
   public void putPendingEntries() {
 
-    if (localStorage != null) {
+    if (cache != null) {
       Object[] cacheKeys= cache.keySet().toArray();
       for (Object cacheKey : cacheKeys) {
-        if (((String) cacheKey).startsWith(PREFIX_PENDING)) {
+        if (((String) cacheKey).startsWith(PENDING_PREFIX)) {
           String date= cache.get(cacheKey);
-          String[] parts= cache.get(PREFIX + date).split(SEPARATOR);
+          String[] parts= cache.get(ENTRY_PREFIX + date).split(SEPARATOR);
           DiaryEntry entry= new DiaryEntry(parts[0], date, parts[1], parts[2],
             Integer.parseInt(parts[3]));
           cache.remove(cacheKey); // if PUT fails, it will be added again
