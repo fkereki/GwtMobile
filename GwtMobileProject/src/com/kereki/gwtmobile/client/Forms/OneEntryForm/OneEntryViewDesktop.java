@@ -185,14 +185,4 @@ public class OneEntryViewDesktop extends View implements OneEntryDisplay {
   public void setSaveCallback(final SimpleCallback<Object> aCallback) {
     onSaveClickCallback= aCallback;
   }
-
-
-
-  @Override
-  public void setViewTitle(final String aTitle) {
-    // TODO Auto-generated method stub
-
-  }
-
-
 }

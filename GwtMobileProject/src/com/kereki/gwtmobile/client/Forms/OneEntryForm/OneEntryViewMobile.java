@@ -92,14 +92,6 @@ public class OneEntryViewMobile extends View implements OneEntryDisplay {
 
 
   @Override
-  public void setViewTitle(final String aTitle) {
-    // TODO Auto-generated method stub
-
-  }
-
-
-
-  @Override
   public void redraw() {
     OneEntryDisplay newView= (Window.getClientHeight() > Window.getClientWidth())? vp: vl;
 

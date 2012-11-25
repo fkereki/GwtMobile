@@ -1,19 +1,13 @@
 CACHE MANIFEST
-# 2012-11-18 20:11:30
+# 2012-11-25 10:05:00
 
-# cd to the "war" directory
+# cd to the "war" directory, do
 # find gwtmobileproject -type f  
 # filter out everything that isn't html, css, images, or js
 
-gwtmobileproject/gwtmobileproject.nocache.js
-gwtmobileproject/A04F340C527F3DB39E65064618B0CDF2.cache.html
-gwtmobileproject/68627CD51F3AEAF3ED5E78ECC34D2453.cache.html
-gwtmobileproject/32FE3014B311AAB493A95FDE6114C9CD.cache.html
-gwtmobileproject/A806920E23141F60D20E34E89247D231.cache.html
-gwtmobileproject/8CB565B7A4DA7286B783EB6A97CF2193.cache.html
-gwtmobileproject/75F280267A0140E5E42592E525D85E74.cache.html
-gwtmobileproject/294692B41DBDD6BFD30AF84089388E4B.cache.html
-gwtmobileproject/hosted.html
+# Since we are using code splitting, I just kept images
+# apart from those we are prefetching
+
 gwtmobileproject/gwt/clean/clean_rtl.css
 gwtmobileproject/gwt/clean/images/hborder_ie6.png
 gwtmobileproject/gwt/clean/images/corner.png
@@ -26,41 +20,7 @@ gwtmobileproject/gwt/clean/images/vborder.png
 gwtmobileproject/gwt/clean/images/thumb_horz.png
 gwtmobileproject/gwt/clean/images/thumb_vertical.png
 gwtmobileproject/gwt/clean/clean.css
-gwtmobileproject/C22A03906982D355131D4F1F311ECD19.cache.html
 gwtmobileproject/clear.cache.gif
-gwtmobileproject/deferredjs/294692B41DBDD6BFD30AF84089388E4B/2.cache.js
-gwtmobileproject/deferredjs/294692B41DBDD6BFD30AF84089388E4B/3.cache.js
-gwtmobileproject/deferredjs/294692B41DBDD6BFD30AF84089388E4B/1.cache.js
-gwtmobileproject/deferredjs/C22A03906982D355131D4F1F311ECD19/2.cache.js
-gwtmobileproject/deferredjs/C22A03906982D355131D4F1F311ECD19/3.cache.js
-gwtmobileproject/deferredjs/C22A03906982D355131D4F1F311ECD19/1.cache.js
-gwtmobileproject/deferredjs/8CB565B7A4DA7286B783EB6A97CF2193/2.cache.js
-gwtmobileproject/deferredjs/8CB565B7A4DA7286B783EB6A97CF2193/3.cache.js
-gwtmobileproject/deferredjs/8CB565B7A4DA7286B783EB6A97CF2193/1.cache.js
-gwtmobileproject/deferredjs/75F280267A0140E5E42592E525D85E74/2.cache.js
-gwtmobileproject/deferredjs/75F280267A0140E5E42592E525D85E74/3.cache.js
-gwtmobileproject/deferredjs/75F280267A0140E5E42592E525D85E74/1.cache.js
-gwtmobileproject/deferredjs/7656E9E219653703682C311D5C135DA6/2.cache.js
-gwtmobileproject/deferredjs/7656E9E219653703682C311D5C135DA6/3.cache.js
-gwtmobileproject/deferredjs/7656E9E219653703682C311D5C135DA6/1.cache.js
-gwtmobileproject/deferredjs/A806920E23141F60D20E34E89247D231/2.cache.js
-gwtmobileproject/deferredjs/A806920E23141F60D20E34E89247D231/3.cache.js
-gwtmobileproject/deferredjs/A806920E23141F60D20E34E89247D231/1.cache.js
-gwtmobileproject/deferredjs/C0E2AF099FE8A68CAEC40EEF28CB3848/2.cache.js
-gwtmobileproject/deferredjs/C0E2AF099FE8A68CAEC40EEF28CB3848/3.cache.js
-gwtmobileproject/deferredjs/C0E2AF099FE8A68CAEC40EEF28CB3848/1.cache.js
-gwtmobileproject/deferredjs/A04F340C527F3DB39E65064618B0CDF2/2.cache.js
-gwtmobileproject/deferredjs/A04F340C527F3DB39E65064618B0CDF2/3.cache.js
-gwtmobileproject/deferredjs/A04F340C527F3DB39E65064618B0CDF2/1.cache.js
-gwtmobileproject/deferredjs/32FE3014B311AAB493A95FDE6114C9CD/2.cache.js
-gwtmobileproject/deferredjs/32FE3014B311AAB493A95FDE6114C9CD/3.cache.js
-gwtmobileproject/deferredjs/32FE3014B311AAB493A95FDE6114C9CD/1.cache.js
-gwtmobileproject/deferredjs/68627CD51F3AEAF3ED5E78ECC34D2453/2.cache.js
-gwtmobileproject/deferredjs/68627CD51F3AEAF3ED5E78ECC34D2453/3.cache.js
-gwtmobileproject/deferredjs/68627CD51F3AEAF3ED5E78ECC34D2453/1.cache.js
-gwtmobileproject/7656E9E219653703682C311D5C135DA6.cache.html
-gwtmobileproject/C0E2AF099FE8A68CAEC40EEF28CB3848.cache.html
-
 
 NETWORK:
 *

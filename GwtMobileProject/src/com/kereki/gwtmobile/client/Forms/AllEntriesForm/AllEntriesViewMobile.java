@@ -61,7 +61,7 @@ public class AllEntriesViewMobile extends View implements AllEntriesDisplay {
 
     hp.setWidth("100%");
 
-    list.setVisibleItemCount(15);
+    list.setVisibleItemCount(10);
     list.setWidth("100%");
 
     title.setHTML("<H1>All entries (Mobile)</H1>");

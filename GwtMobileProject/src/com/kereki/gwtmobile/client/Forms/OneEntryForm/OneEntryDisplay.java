@@ -42,8 +42,4 @@ public interface OneEntryDisplay extends Display {
 
 
   void setSaveCallback(final SimpleCallback<Object> aCallback);
-
-
-
-  void setViewTitle(final String aTitle);
 }
