@@ -6,7 +6,7 @@
         }
     </ui:style>
 
-    <g:HTMLPanel>
+    <g:HTMLPanel width='100%' height='100%'>
         <h2>One entry - Tablet Landscape view</h2>
         <table style="width:100%;">
             <tr>
